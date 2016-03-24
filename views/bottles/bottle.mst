@@ -1,0 +1,30 @@
+{{#bottles}}
+	<li class="item bottle {{class}}" id="bottle_{{id}}">
+		{{#owner}}
+			<i class="fa fa-times delete"></i>
+		{{/owner}}
+		
+		<div class="bottle-size">{{size}} L</div>
+		<img src="img/bottle-icon.png" alt="stoli" />
+		<div class="bottle-trophies">{{trophies}}</div>									
+			<div class="bottle-people">
+				<div class="owner">{{{first_name}}} {{{last_name}}}</div>
+				{{#attendees.length}}
+					<div>en {{attendees.length}} anderen</div>
+				{{/attendees.length}}
+				
+				{{^attendees.length}}
+				<div>en 0 anderen</div>
+				{{/attendees.length}} 
+				
+					{{#attendees.length}}
+					<ul class="bottle-attendees">
+						{{#attendees}}
+						<li class="attendee">{{{.}}}</li>
+						{{/attendees}}
+					</ul>
+					{{/attendees.length}}
+			</div>
+		<div class="bottle-date">{{date}}</div>
+	</li> 
+{{/bottles}}

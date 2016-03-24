@@ -1,0 +1,129 @@
+/* ADD BOTTLE SURVEY */
+#bottlesPopupModule{
+  display: none;
+}
+
+.add-bottle-survey{
+  
+  .user-id{
+    display:none;
+  }
+  
+  h1{    
+    padding: 15px 0 10px 0;
+    font-size: 24px;
+  }
+
+  .question{
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  hr{
+    margin: 15px 0;
+  }
+  
+  hr:last-of-type{
+    margin: 60px 0 20px;
+  }
+  
+  .part{
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5% 3vw; 
+    position: relative;
+    height: 469px;
+    .bottom{
+      margin-left: 0;
+      width: 82%;
+    }
+    
+  }
+  
+  .back-btn{
+    padding: 0 20px;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  #part1{    
+    #choose-size {
+      height:250px;
+      img{
+        height: 180px;
+      }
+    }
+    .bottle-size{
+      font-family: 'Akzidenz Bold';
+      font-size: 18px;
+    }
+  }
+  
+  #part2{
+    #choose-attendees{
+      height:250px;
+      overflow:auto;
+
+      li:before{
+        font-family:fontawesome;
+        content: '\f183';
+        font-size:30px;
+        position:absolute;
+        margin-top:-40px;
+        left: 42%;
+      }
+      li{
+        opacity:0.6;
+        list-style:none;
+        width: 33%;
+        margin-top:40px;
+        float:left;        
+        text-align:center;
+        position:relative;
+        &:hover{
+          cursor:pointer;
+        }
+      }
+      li.active{
+        opacity:1;
+      }
+      li.active:before{
+        content: '\f1ae';
+      }
+      
+    }
+  }
+  #part3{
+    .questions{
+      height: 335px;
+    }
+    input{
+      padding: 6px 8px;
+    }  
+    .time-bottle{
+      padding-bottom: 20px;
+      
+      li{
+        list-style:none;
+        position:relative;
+        float: left;
+        width:20%;
+      }
+      label{
+        font-size:12px;
+        margin-top:-18px;
+        left: 0;
+        width: 100%;
+        position:absolute;
+      }
+      
+    }      
+    hr:last-of-type{
+      margin: 25px 0 20px;
+    }
+  }
+  
+}
+ 
+
+

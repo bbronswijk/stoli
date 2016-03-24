@@ -1,0 +1,25 @@
+
+// settings colors | should only be used inside this file
+$color-dark: #31383E; // dark grey
+$color-light: #c3c3c3; // grey
+$color-blue: #0073aa; 
+$color-red: #df1a25;
+
+// general colors | can be used outside this file
+$accent-color:  $color-red;
+
+// backgrounds
+$background-blue: #f1f4f7;
+$background-grey: #f8f3f0;
+$background-dark: $color-dark;
+
+// layouts
+$sidebar-bg : $color-dark;
+$sidebar-accent : $color-blue;
+$content-bg  : $background-grey;
+
+// functions
+$text-color: $color-dark;
+$text-color-light: $color-light;
+$text-main-font : 'Kalinga';
+$text-bold-font : 'Akzidenz Bold'; 

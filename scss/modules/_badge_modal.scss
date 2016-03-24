@@ -1,0 +1,45 @@
+#badge-modal{
+  display:none;
+  .badge-modal{    
+      
+      .owl-carousel{
+        display: block;
+      }
+      
+      h1{
+        padding: 20px 0 15px 0;
+        font-size: 17px;
+      }
+      
+      .number{
+        position:absolute;
+        top: 2%;
+        right: 4%;
+        font-size: 20px;
+        color: $text-color-light; 
+      }
+      
+      img{
+        max-width: 50%;
+        margin: 10% 0 3% 0;
+        opacity: 0.75;
+      }
+      
+      .description{
+        font-weight: bold;
+        font-size: 20px;
+        padding: 0px 30px;
+      }
+      
+      .xp{
+        font-weight: bold;
+        font-size: 20px;
+        color: $text-color-light; 
+        margin-bottom: 1px; 
+      }
+   
+    
+  }
+}
+
+

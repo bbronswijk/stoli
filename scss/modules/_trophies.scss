@@ -1,0 +1,29 @@
+#trophies{
+  
+  .trophy{  
+    opacity:0.5;
+    
+    img{
+      height: auto;
+      width: 100%;
+      opacity: 0.75;
+    }
+    
+    .description{
+      margin-top:10px;
+      font-weight: bold;
+      height: 42px;
+    }
+    
+    .xp{
+      color: $text-color-light;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+  }
+  
+  .trophy.complete{
+    opacity: 1;
+  }
+  
+}

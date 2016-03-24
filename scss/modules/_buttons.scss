@@ -1,0 +1,60 @@
+.btn{
+  font-size: 14px;
+  font-family: 'Akzidenz Bold';
+  display: inline-block;
+  position:relative;
+  text-transform: capitalize;
+  padding: 8px 15px 8px 15px;
+  border: none;
+  text-decoration: none;
+}
+
+.btn:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+
+.btn:after{ 
+  font-family: fontawesome;
+  margin-left: 15px;
+    padding: 5px 0 5px 15px ;
+}
+
+.btn.add:after{
+  content:'\f067';
+}
+
+.btn.next:after{
+  content:'\f061';
+}
+
+.btn.fb:after{
+  content:'\f09a';
+}
+
+.btn.exit:after{
+  content:'\f00d';
+}
+
+.btn.check:after{
+  content:'\f00c';
+}
+
+.btn.red{
+  background: #df1a25;
+  color: #fff;
+}
+
+.btn.red:after{
+  border-left: 1px solid #E2A0A3;
+}
+
+.btn.blue{
+  background: #3b5998;
+  color: #fff;
+}
+
+.btn.blue:after{
+  border-left: 1px solid #fff;
+}

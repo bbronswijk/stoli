@@ -1,0 +1,18 @@
+<h1>Je hebt {{badges.length}} {{amount}} verdiend!</h1>
+<div class="exit_popup">&times;</div>
+<div class="content">
+	<div class="owl-carousel">
+		{{#badges}}
+			<div>
+			 	<div class="number">{{number}}/{{badges.length}}</div>
+				<img src="img/achievements/{{img}}.svg" alt="achievement" />
+				<p class="description">{{description}}</p>
+				<p class="xp">{{xp}} xp</p>
+			</div>
+		{{/badges}}
+	</div>
+	<div class="bottom">
+		<button class="btn red exit close-modal">sluiten</button>
+	</div>
+</div>
+

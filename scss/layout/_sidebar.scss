@@ -1,0 +1,82 @@
+.sidebar{
+  float:left;
+  position: relative;
+  background: $sidebar-bg;
+  height: 100%;
+  width: 20%;
+
+  .nav_logo{
+    width: 60%;
+    margin:15% 20%;
+  }
+  
+  li{    
+    a{
+      display:inline-block;
+      padding: 10px 10%;
+      font-family: $text-bold-font;
+      list-style: none;
+      color: #fff;      
+      text-transform:capitalize;
+      text-decoration: none;
+      line-height: 27px;
+      width: 80%;
+    }
+    &:hover{
+      background: $sidebar-accent;
+    }
+  
+  }
+  
+  li a:before{
+    font-family: fontawesome;
+    margin-right: 10px;
+    font-size: 1.3em;
+    color: #fff;
+  } 
+  
+  li:nth-child(1) > a:before{
+    content: '\f0e4';    
+  }
+  
+  /* custom font for second menu item to be able to use bottle */
+  li:nth-child(2) a{
+    padding: 10px 10% 10px 22%;
+    width: 68%;
+  }
+  
+  li:nth-child(2) .icon-bottle-empty{
+    font-family: 'untitled-font-3';
+    content: "\62";
+    color: white;
+    font-size: 26px;
+    margin-top: -1px;
+    margin-left: -24px;
+    position: absolute;
+  }
+  
+  li:nth-child(3) > a:before{
+    content: '\f1ae';
+  }
+  
+  li:nth-child(4) > a:before{
+    content: '\f091';
+  }
+  
+  li.current-item{
+    background: $sidebar-accent;
+  }
+  
+  .copyright{
+    opacity: 0.6;
+    position:absolute;
+    bottom:0;
+    left: 0;
+    font-size: 12px;
+    box-sizing: border-box;
+    color: #f8f3f0;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+}

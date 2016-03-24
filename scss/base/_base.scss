@@ -1,0 +1,56 @@
+*, html{
+  margin: 0;
+  padding: 0;
+  color: $text-color;
+  font-family:'Kalinga';
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 1.5;
+}
+
+b{
+  font-size: inherit;
+  font-weight: bold;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background: url('../img/bg.jpg') no-repeat #dde0e4;
+  background-size: cover;
+}
+
+body.noscroll{
+  overflow: hidden;
+}
+
+/* scrollbar for Chrome */
+::-webkit-scrollbar {
+      width: 12px;
+      border:5px solid #f8f3f0;
+} /* this targets the default scrollbar (compulsory) */
+
+::-webkit-scrollbar-thumb {
+      background-color: #879093;
+      border-radius: 10px; 
+} /* this will style the thumb, ignoring the track */
+
+::-webkit-scrollbar-track {
+      background: #f8f3f0;  
+} /* the new scrollbar will have a flat appearance with the set background color */
+
+::-webkit-scrollbar-button {
+      background-color: #f8f3f0;
+}
+
+/* scrollbar IE */
+body{
+  scrollbar-base-color: #879093;
+  scrollbar-face-color: #879093;
+  scrollbar-3dlight-color: #2e3d42;
+  scrollbar-highlight-color: #879093;
+  scrollbar-track-color: #2e3d42;
+  scrollbar-arrow-color: #2e3d42;
+  scrollbar-shadow-color: #2e3d42;
+  scrollbar-dark-shadow-color: #2e3d42;
+} 
