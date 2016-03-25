@@ -7,6 +7,7 @@ class User_Model extends Model {
 		
 	}
 	
+	// get the name and picture of the onlne user
 	public function getUser(){
 		$userId = Session::get('fb_user_id');
 		$query = $this->db->query("
@@ -14,8 +15,7 @@ class User_Model extends Model {
 							id,
 							first_name,
 							last_name,
-							picture,
-							xp 
+							picture
 						FROM 
 							users 
 						WHERE 
@@ -28,6 +28,7 @@ class User_Model extends Model {
 		return $data;		
 	}
 	
+	// get the amount of bottles from the online user
 	public function countBottles(){
 		$userId = Session::get('fb_user_id');
 		$query = $this->db->query("
@@ -44,6 +45,8 @@ class User_Model extends Model {
 			
 	}
 	
+	
+	// get the amount of xp from the online-user
 	public function getStats(){
 				
 		$user_id = Session::get('fb_user_id');
@@ -67,5 +70,7 @@ class User_Model extends Model {
 		echo json_encode($data);
 		return;	
 	}
+	
+	
 
 }

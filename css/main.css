@@ -692,6 +692,52 @@ body {
 .btn.blue:after {
   border-left: 1px solid #fff; }
 
+/* DEELNEMERS */
+.user .profile-picture {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+  .user .profile-picture img {
+    height: 100%;
+    width: auto; }
+.user .bottle-trophies {
+  display: inline-block; }
+.user .bottle-trophies:before {
+  content: '\f091';
+  font-family: fontawesome;
+  margin-right: 5px; }
+.user .owner {
+  margin: 15px 0 5px 0;
+  position: relative;
+  font-weight: bold; }
+.user .bottles {
+  padding: 10px 35%;
+  margin-top: 5px; }
+  .user .bottles .icon-bottle-empty:before {
+    font-size: 20px;
+    position: absolute;
+    margin-left: -10px; }
+  .user .bottles .number-bottles {
+    float: left; }
+  .user .bottles .number-trophies {
+    float: right; }
+.user .stats {
+  text-align: center;
+  height: 35px; }
+  .user .stats p {
+    display: inline-block;
+    padding: 0 10px;
+    color: #c3c3c3;
+    width: 36%;
+    text-align: left; }
+  .user .stats p:first-child {
+    border-right: 1px solid #c3c3c3;
+    text-align: right; }
+
 .login {
   text-align: center;
   max-width: 300px;
@@ -853,28 +899,6 @@ body {
       width: auto; }
   .top_bar .notifications-container ul li strong {
     font-family: "Akzidenz Bold"; }
-
-#users .user .profile-picture {
-  width: 120px;
-  height: 120px;
-  overflow: hidden;
-  border-radius: 50%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto; }
-  #users .user .profile-picture img {
-    height: 100%;
-    width: auto; }
-#users .user .bottle-trophies {
-  display: inline-block; }
-#users .user .bottle-trophies:before {
-  content: '\f091';
-  font-family: fontawesome;
-  margin-right: 5px; }
-#users .user .owner {
-  margin: 15px;
-  position: relative;
-  font-weight: bold; }
 
 #trophies .trophy {
   opacity: 0.5; }

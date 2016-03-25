@@ -19,4 +19,5 @@ class user extends Controller {
 		$this->model->getStats();
 	}
 
+
 }
