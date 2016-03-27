@@ -42,5 +42,9 @@ class login extends Controller {
 			$this -> view -> render('login/auth');
 		}		
 	}
+	
+	function logout(){
+		$this -> model -> logout();
+	}
 
 }

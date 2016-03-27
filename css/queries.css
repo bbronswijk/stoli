@@ -12,11 +12,11 @@
 	}
 	
 	.sidebar{
-		width: 30%;
+		width: 25%;
 	}
 
 	.panel .content, .top_bar{
-		width: 70%;
+		width: 75%;
 	}
 	
 	.items .item{

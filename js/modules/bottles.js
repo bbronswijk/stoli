@@ -25,12 +25,13 @@ var bottles = (function() {
 						$id = bottles[i].id;
 
 						// trophies[i].trophies && 0 > i < 7
-						if( trophies[i].trophies ){
-							$trophies = trophies[i].trophies;
-						} else{
-							$trophies = 0;
-						}			
-						
+						if(i < trophies.length){
+							if( trophies[i].trophies ){
+								$trophies = trophies[i].trophies;
+							} else{
+								$trophies = 0;
+							}			
+						}
 					
 												
 						// trophies

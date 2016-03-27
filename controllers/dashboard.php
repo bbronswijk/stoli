@@ -9,11 +9,16 @@ class dashboard extends Controller {
 	}
 
 	function index() {
-		//require 'models/index_model.php';
-		//$model = new Index_Model();
-		//$this -> view -> user = Session::get('fb_user_id');
-		$this -> view -> msg = 'This is the view content of dashboard from the dashboard controller';
+		//$this -> view -> dates = $this -> model -> getDates();
 		$this -> view -> render('dashboard/index');
+	}
+	
+	function getDates(){
+		$this -> model -> getDates();
+	}
+	
+	function getUsers(){
+		$this -> model -> getUsers();
 	}
 
 }

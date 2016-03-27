@@ -10,20 +10,35 @@ class Trophies_Model extends Model {
 	}
 	
 	public function getTrophies(){
-		$user_id = $_POST['user_id'];
+		$user_id = Session::get('fb_user_id');
 		
+		$query = $this->db->prepare("SELECT 
+										trophy_id
+									FROM
+										bottles_trophies
+									WHERE
+										user_id = :user_id
+										")or die('Error: trophy_Model getTrophies');
+		$query->bindParam(':user_id', $user_id);
+		
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$query->execute();
+		$data = $query->fetchAll();
+		return $data;				
+	}
+	
+	public function getAllTrophies(){		
 		$query = $this->db->query("
 						SELECT 
-							trophies.img,
-							trophies.description,
-							trophies.xp
+							id,
+							img,
+							description,
+							xp
 						FROM 
-							users_trophies
-						LEFT JOIN users ON
-							trophies.trophy_id = trophies.id
+							trophies
 						WHERE 
-							users_trophies.user_id > ".$user_id			
-						) or die('Error: trophy_Model getTrophies');
+							type != 'xp' "			
+						) or die('Error: trophy_Model getALLTrophies');
 	
 		$query->setFetchMode(PDO::FETCH_ASSOC);
 		$data = $query->fetchAll();

@@ -30,6 +30,6 @@
 			<p class="level" id="xp"><?php echo $user['xp']; ?> XP</p><p class="level" id="level">Level 1</p>
 		</div>
 		
-		<a href="#" class="logoff">uitloggen</a>
+		<a href="#" class="logout">uitloggen</a>
 	</div>
 </div>

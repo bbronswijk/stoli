@@ -1,19 +1,33 @@
 <?php
 
-class Deelnemers_Model extends Model {
+class Dashboard_Model extends Model {
 
 	function __construct() {		
 		parent::__construct();
 		
 	}
 	
+	public function getDates(){
+		$query = $this->db->prepare("SELECT
+									  *
+									FROM
+									  bottles
+									ORDER BY
+									  date DESC
+									") or die('Error: Dashboard_Model getDates');
+	
+		
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$query->execute();
+		$data = $query->fetchAll();
+		echo json_encode($data);
+	}
+	
 	public function getUsers(){
 		$query = $this->db->query("SELECT
-									  users.id,
-									  users.picture,
-									  users.first_name,
 									  users.last_name,
 									  SUM(trophies.id= 13) as bottles,
+									  SUM(trophies.id= 11) as most,
 									  SUM(trophies.type='trophy') + SUM(trophies.type='badge') as trophies,
 									  SUM(trophies.xp) as xp
 									FROM
@@ -30,11 +44,10 @@ class Deelnemers_Model extends Model {
 	
 		
 		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$query->execute();
 		$data = $query->fetchAll();
-		return $data;
+		echo json_encode($data);
 	}
-	
-	
 
 
 }

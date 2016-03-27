@@ -106,9 +106,9 @@ class Bottles_Model extends Model {
 			$query->execute();
 			$bottle_id = $this->db->lastInsertId();
 			
-			// set xp
-			$user_id = Session::get('fb_user_id');
-			$this->setXpUser($user_id,30);
+			// set xp -> don using trophies
+			//$user_id = Session::get('fb_user_id');
+			//$this->setXpUser($user_id,30);
 			
 			// add attendees
 			if(!empty($_POST['users'])){
@@ -130,8 +130,9 @@ class Bottles_Model extends Model {
 	}
 	
 	public function deleteBottle(){
-		$user_id = Session::get('fb_user_id');
-		$this->setXpUser($user_id,30,true);
+		// done using trophies
+		//$user_id = Session::get('fb_user_id');
+		//$this->setXpUser($user_id,30,true);
 		
 		$query = $this->db->prepare("DELETE FROM 
 										bottles 

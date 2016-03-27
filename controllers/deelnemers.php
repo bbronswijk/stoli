@@ -11,8 +11,9 @@ class deelnemers extends Controller {
 	function index() {
 		$this -> view -> users = $this -> model -> getUsers();
 		$this -> view -> render('deelnemers/index');
-
 	}
+	
+	
 
 
 }

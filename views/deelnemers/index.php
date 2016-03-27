@@ -30,27 +30,33 @@
 		}
 		
 		echo '<li class="item user" id="user_' . $value['id'] . '">';	
-		echo '<div class="profile-picture">';		
-			if($sock = @fsockopen('www.google.com', 80)){
-				echo '<img src="'.$value['picture'].'" alt="profile"/>';
+			echo '<div class="profile-picture">';		
+				if($sock = @fsockopen('www.google.com', 80)){
+					echo '<img src="'.$value['picture'].'" alt="profile"/>';
+				} else{
+					echo '<img src="'.URL.'img/profile.png" alt="profile"/>';
+				}
+			echo '</div>';
+			echo '<div class="bottles"> ';
+				if(!empty($value['bottles'])){
+					echo '<div class="number-bottles"><span class="icon-bottle-empty"></span> '.$value['bottles'].'</div>';
+				} else{
+					echo '<div class="number-bottles"><span class="icon-bottle-empty"></span> 0</div>';
+				}
+			
+				
+				if(!empty($value['trophies'])){
+					echo '<div class="number-trophies"><i class="fa fa-trophy"></i> '.$value['trophies'].'</div>';
+				} else{
+					echo '<div class="number-trophies"><i class="fa fa-trophy"></i> 0</div>';
+				}
+			echo '</div>';
+			echo '<div class="owner">' . $value['first_name'] . ' ' . $value['last_name'] . '</div>';
+			if(!empty($value['xp'])){
+				echo '<div class="stats"><p>'.$value['xp'].' XP</p><p>'.$userLevel.'<p></div>'; 
 			} else{
-				echo '<img src="'.URL.'img/profile.png" alt="profile"/>';
+				echo '<div class="stats"><p>0 xp</p><p>Level 0</p></div>'; 	
 			}
-		echo '</div>';
-		echo '<div class="bottles"> ';
-			echo '<div class="number-bottles"><span class="icon-bottle-empty"></span> '.$value['bottles'].'</div>';
-			if(!empty($value['trophies'])){
-				echo '<div class="number-trophies"><i class="fa fa-trophy"></i> '.$value['trophies'].'</div>';
-			} else{
-				echo '<div class="number-trophies"><i class="fa fa-trophy"></i> 0</div>';
-			}
-		echo '</div>';
-		echo '<div class="owner">' . $value['first_name'] . ' ' . $value['last_name'] . '</div>';
-		if(!empty($value['xp'])){
-			echo '<div class="stats"><p>'.$value['xp'].' XP</p><p>'.$userLevel.'<p></div>'; 
-		} else{
-			echo '<div class="stats"><p>0 xp</p><p>Level 0</p></div>'; 	
-		}
 		echo '</li>';
 
 	}

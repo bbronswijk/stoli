@@ -9,10 +9,10 @@ class trophies extends Controller {
 	}
 
 	function index() {
-		//require 'models/index_model.php';
-		//$model = new Index_Model();
-
-		$this -> view -> msg = 'This is the view content of trophies from the trophies controller';
+		// check completed trophies
+		$this -> view -> userTrophies = $this -> model -> getTrophies();
+		// get list of all available trophies
+		$this -> view -> trophies = $this -> model -> getAllTrophies();
 		$this -> view -> render('trophies/index');
 	}
 

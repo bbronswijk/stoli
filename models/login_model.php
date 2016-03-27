@@ -4,6 +4,11 @@ class Login_Model extends Model {
 	public function __construct() {
 		parent::__construct();
 	}
+	
+	public function logout(){
+		Session::destroy();
+		echo json_encode('destroyed');
+	}
 
 	public function auth() {
 		

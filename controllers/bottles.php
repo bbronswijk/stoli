@@ -9,8 +9,6 @@ class bottles extends Controller {
 	}
 
 	function index() {
-		//$this -> view -> bottles = $this -> model -> getBottles();
-		//$this -> view -> attendees = $this -> model -> getAttendees();
 		$this -> view -> users = $this -> model -> getUsers();
 		$this -> view -> render('bottles/index');
 

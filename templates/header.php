@@ -17,8 +17,15 @@
 		<link rel="stylesheet" href="<?php echo URL; ?>css/main.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>css/queries.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>css/vendor.css">
-		<link rel="stylesheet" href="<?php echo URL; ?>css/stoli-icons.css">
-
+		<link rel="stylesheet" href="<?php echo URL; ?>css/stoli-icons.css">	
+		<?php 
+			if($sock = @fsockopen('www.google.com', 80)){
+						echo '<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">';
+			} else{
+				echo '<link rel="stylesheet" href="'.URL.'css/chartist.min.css">';
+			}
+		?>
+		
 	</head>
 	<body class="<?php echo $this->bodyHelper->bodyClass(); ?>-page">
 

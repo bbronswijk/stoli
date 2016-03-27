@@ -5,13 +5,14 @@
 var user = (function(){		
 		
 	var id = $('.online-user #user-id').text();
+	var $logOut = $('.logout');
 	var last_name = $('.online-user .last-name').text(); 
 	var $bottles = $('#bottles');
 	var $total = $bottles.find('.bottle');
 	var $own = $bottles.find('.bottle.owner');
 	var $own_amount = $own.length;
 	
-	var levels = [{
+	levels = [{
 					level: 1,
 					xp: 100				
 				},{
@@ -48,6 +49,18 @@ var user = (function(){
 	events.on('bottlesChanged',getStats);
 	events.on('badgesUpdated',getStats);
 	events.on('PageReady',getStats);
+	$logOut.on('click',logOut);
+	
+	function logOut(){
+		var url = window.location.origin.replace('#', '');
+		var action = url + '/stoli/login/logout/';
+				
+		$.get(action, function(response) {			
+			if(response === 'destroyed'){
+			 	window.location.replace(url+'/stoli/login/');
+			}
+		},'json');
+	}
 		
 	// update number of bottles -> this one doens't  use a db call
 	function updateBottles(bottles){		
@@ -95,7 +108,8 @@ var user = (function(){
 	
 	return {
 		id : id,
-		last_name : last_name
+		last_name : last_name,
+		levels : levels
 	};
 
 })();
