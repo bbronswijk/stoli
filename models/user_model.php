@@ -48,8 +48,8 @@ class User_Model extends Model {
 	
 	// get the amount of xp from the online-user
 	public function getStats(){
-				
 		$user_id = Session::get('fb_user_id');
+		
 		$query = $this->db->prepare("SELECT 
 										trophies.type,
 										trophies.xp 
@@ -68,7 +68,6 @@ class User_Model extends Model {
 		$data = $query->fetchAll();
 			
 		echo json_encode($data);
-		return;	
 	}
 	
 	

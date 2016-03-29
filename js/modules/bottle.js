@@ -3,8 +3,7 @@ var bottle = (function() {
 
 	function saveBottle() {
 		loader.update('saving bottle..');
-		var url = window.location.href.replace('#','');
-		var action = url + '/insertBottle/';
+		var action = link.base + '/bottles/insertBottle/';
 		
 		var data = {
 			user_id : this.user_id,
@@ -39,9 +38,7 @@ var bottle = (function() {
 			
 			$date = $('#bottle_'+id+' .bottle-date').text();
 
-			var url = window.location.href.replace('#','');
-			
-			var action = url + '/deleteBottle/';
+			var action = link.base + '/bottles/deleteBottle/';
 
 			$.post(action, data, function(response) {
 				if( Math.floor(response) == response && $.isNumeric(response) ){

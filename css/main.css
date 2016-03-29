@@ -739,32 +739,38 @@ body {
     border-right: 1px solid #c3c3c3;
     text-align: right; }
 
-.graph {
+.graph, .welcome {
   background: #fff;
   margin-bottom: 1%;
   position: relative;
   overflow: hidden;
   -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25); }
-  .graph h2 {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+  height: 265px; }
+  @media screen and (max-width: 1100px) {
+    .graph, .welcome {
+      margin-bottom: 3%; } }
+  .graph .chart, .welcome .chart {
+    margin: 5px; }
+  .graph h2, .welcome h2 {
     font-family: "Akzidenz Bold";
     font-weight: bold;
     font-size: 14px;
     padding: 8px 16px;
     margin-bottom: 12px;
     border-bottom: 1px solid #eee; }
-  .graph table {
+  .graph table, .welcome table {
     margin: 3% 9%; }
-    .graph table tr {
+    .graph table tr, .welcome table tr {
       height: 15px;
       width: 100%; }
-    .graph table th {
+    .graph table th, .welcome table th {
       font-family: "Akzidenz Bold";
       text-align: left;
       width: 67%;
       text-transform: capitalize; }
-  .graph .statics-background {
+  .graph .statics-background, .welcome .statics-background {
     background: url("../img/bottle.svg") no-repeat;
     opacity: 0.08;
     top: 53px;
@@ -774,13 +780,22 @@ body {
     height: 165%;
     background-size: contain; }
 
-.chart {
-  margin: 5px; }
+.welcome h2 {
+  padding: 15px 30px 0 30px;
+  margin: 0;
+  font-family: "Kalinga";
+  font-size: 24px;
+  border-bottom: none; }
+.welcome h3 {
+  font-family: "Kalinga";
+  font-size: 18px;
+  line-height: 24px;
+  color: #c3c3c3;
+  margin-bottom: 10px; }
 
 .col {
   box-sizing: border-box;
-  float: left;
-  height: 265px; }
+  float: left; }
 
 .col-1 {
   width: 99%; }
@@ -793,9 +808,15 @@ body {
 
 .col-3 {
   width: 32%; }
+  @media screen and (max-width: 1100px) {
+    .col-3 {
+      width: 99%; } }
 
 .col-32 {
   width: 66%; }
+  @media screen and (max-width: 1100px) {
+    .col-32 {
+      width: 99%; } }
 
 .login {
   text-align: center;

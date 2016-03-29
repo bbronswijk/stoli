@@ -52,12 +52,11 @@ var user = (function(){
 	$logOut.on('click',logOut);
 	
 	function logOut(){
-		var url = window.location.origin.replace('#', '');
-		var action = url + '/stoli/login/logout/';
+		var action = link.base + '/login/logout/';
 				
 		$.get(action, function(response) {			
 			if(response === 'destroyed'){
-			 	window.location.replace(url+'/stoli/login/');
+			 	window.location.replace(link.base+'/login/');
 			}
 		},'json');
 	}
@@ -75,8 +74,7 @@ var user = (function(){
 
 	// only for the xp and trophies	
 	function getStats(){
-		var url = window.location.origin.replace('#', '');
-		var action = url + '/stoli/user/getStats/';
+		var action = link.base + '/user/getStats/';
 
 		$.get(action, function(response) {
 			if ($.isArray(response)) {
@@ -99,6 +97,7 @@ var user = (function(){
 						return false;
 					}
 				});
+								
 				$('.online-user .user-level #level').text('Level '+user_level);
 				$('.online-user .bottle-trophies').text(trophies);
 				$('.online-user .user-level #xp').text(xp+' XP');

@@ -174,9 +174,8 @@ var trophies = (function() {
 	}
 
 	function _getCompleted() {
-		// fetch array met completed badges from database
-		var url = window.location.origin.replace('#', '');
-		var action = url + '/stoli/trophies/checkCompleted/';
+		// fetch array met completed badges from database\
+		var action = link.base + '/trophies/checkCompleted/';
 
 		var data = {
 			user_id : user.id
@@ -322,8 +321,6 @@ var trophies = (function() {
 		loader.update('prepraring trophies..');
 		
 		var deferreds = [];
-  	
-		var url = window.location.origin.replace('#', '');
 				
 	  	$.each(newTrophies, function(i) {
 	    	
@@ -338,10 +335,10 @@ var trophies = (function() {
 			// select right model
 			if (badge_type === 'trophy') {
 				// delete old row with trophy and insert new one
-				var action = url + '/stoli/trophies/updateTrophy/';
+				var action = link.base + '/trophies/updateTrophy/';
 			} else {
 				// insert new row in the user_trophies table
-				var action = url + '/stoli/trophies/insertTrophy/';
+				var action = link.base + '/trophies/insertTrophy/';
 			}
 			
 			if(badge_id != 14){

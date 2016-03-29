@@ -174,7 +174,10 @@ class Bottles_Model extends Model {
 			return;
 	}
 	
-	public function getUsers(){		
+	public function getUsers(){
+		
+		$user_id = Session::get('fb_user_id');
+				
 		$query = $this->db->prepare("
 						SELECT 
 							id,
@@ -187,7 +190,7 @@ class Bottles_Model extends Model {
 							last_name DESC
 						") or die('Error: bottles_Model getUsers');
 						
-		$query->bindParam(':user_id', Session::get('fb_user_id'));
+		$query->bindParam(':user_id', $user_id);
 		$query->execute();
 		
 		$query->setFetchMode(PDO::FETCH_ASSOC);

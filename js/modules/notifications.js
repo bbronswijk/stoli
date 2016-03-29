@@ -13,9 +13,8 @@ var notifications = (function() {
 			user_id : user_id,
 			notification : last_notification
 		};
-		
-		var url = window.location.origin;			
-		var action = url + '/stoli/notifications/clearNotifications/';
+				
+		var action = link.base + '/notifications/clearNotifications/';
 		
 		$.post(action, data, function(response) {
 			
@@ -33,9 +32,8 @@ var notifications = (function() {
 			user_id : user_id,
 			notification : message
 		};
-		
-		var url = window.location.origin;			
-		var action = url + '/stoli/notifications/createNotification/';
+				
+		var action = link.base + '/notifications/createNotification/';
 		
 		$.post(action, data, function(response) {
 			

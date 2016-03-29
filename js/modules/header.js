@@ -1,6 +1,15 @@
 /**
  * @author bramb
  */
+var link = (function() { 
+	
+	var base = window.location.origin.replace('#', '')+'/stoli';
+	
+	return {
+		base : base
+	};
+})();
+
 $(document).ready(function() {
 	/* When user clicks the nav Icon */
 	$(".nav-toggle").click(function(e) {

@@ -5,7 +5,7 @@
 		<a href="<?php echo URL; ?>"> <img class="nav_logo" src="<?php echo URL; ?>img/stoli_logo_beta.png" alt="logo"/> </a>
 		<?php $this->renderTemplate('templates/nav'); ?>
 		<p class="copyright">
-			wiebetaaltdestolli.nl &copy; 2016
+			wiebetaaltdestoli.com &copy; <?php echo date("Y"); ?>
 		</p>
 	</div>
 

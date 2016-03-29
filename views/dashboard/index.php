@@ -1,8 +1,9 @@
 <h1 class="page-title">Dashboard</h1>
 
-<div class="graph col col-32"> 
-	<h2>Flessen Toegevoegd</h2>
-	<div class="chart dateAdded ct-major-twelfth"></div>
+<div class="welcome graph col col-32"> 
+	<h2>Welkom</h2>
+	
+	<div class="chart dateAdded"></div>
 </div>
 
 <div class="graph col col-3"> 
@@ -52,8 +53,9 @@
 	<h2>XP</h2>
 	<div class="chart horBarChart ct-major-twelfth"></div>
 </div>
-
+<!--
 <div class="graph col col-1"> 
 	<h2>Flessen Toegevoegd</h2>
 	<div class="chart barChart ct-double-octave"></div>
 </div>
+-->
