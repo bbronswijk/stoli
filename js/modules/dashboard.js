@@ -119,19 +119,22 @@ var dashboard = (function() {
 				
 			}
 			
-			if(totalBottles == 0){ 
+			
+			$('td.amount-bottles').text(totalBottles);
 				
+			
+			totalUsers = response.length;
+			$('td.amount-users').text(totalUsers);
+			
+			
+			if(totalBottles == 0){ 	
 				showAlert('error','Er zijn geen flessen gevonden in de Database. Voeg een fles Stoli toe om te statistieken op deze pagina te berekenen!');
 				return false;
 			}
 						
 			mostXP = xps.indexOf(Math.max.apply(Math, xps).toString());
-			mostXPUser = xpsLabels[mostXP];			
+			mostXPUser = xpsLabels[mostXP];		
 			
-			totalUsers = response.length;
-			
-			$('td.amount-bottles').text(totalBottles);
-			$('td.amount-users').text(totalUsers);
 			$('td.most-xp').text(mostXPUser);
 			if(typeof mostBottlesUser != 'undefined') $('td.most-bottles').text(mostBottlesUser);
 			

@@ -13,9 +13,16 @@
     padding: 22px 25px 40px 30px;
     text-align: right;
     
-    &:hover >  .online-user-container{
+    &:hover .online-user-container,&:focus  .online-user-container{
       display: block;
     }
+
+    .last-name{
+      &:hover .online-user-container,&:focus  .online-user-container,&:active .online-user-container{
+        display: block;
+      }
+    }
+    
   }
   
   .online-user:after{

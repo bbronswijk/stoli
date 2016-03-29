@@ -282,7 +282,9 @@ body {
     max-width: 200px;
     padding: 22px 25px 40px 30px;
     text-align: right; }
-    .top_bar .online-user:hover > .online-user-container {
+    .top_bar .online-user:hover .online-user-container, .top_bar .online-user:focus .online-user-container {
+      display: block; }
+    .top_bar .online-user .last-name:hover .online-user-container, .top_bar .online-user .last-name:focus .online-user-container, .top_bar .online-user .last-name:active .online-user-container {
       display: block; }
   .top_bar .online-user:after {
     content: '\f107';
@@ -768,7 +770,7 @@ body {
     .graph table th, .welcome table th {
       font-family: "Akzidenz Bold";
       text-align: left;
-      width: 67%;
+      width: 110px;
       text-transform: capitalize; }
   .graph .statics-background, .welcome .statics-background {
     background: url("../img/bottle.svg") no-repeat;
