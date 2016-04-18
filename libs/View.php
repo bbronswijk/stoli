@@ -53,6 +53,7 @@ class View {
 		if (file_exists($file)) {
 			require $file;			
 		}
+		
 		$controller = new $name;
 		
 		// load model 
@@ -64,7 +65,10 @@ class View {
 		
 		// render the default index function of the just required controller
 		// additional options may be necessary
+		
 		$controller->index();
+		
+		
 
 	}
 	

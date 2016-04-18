@@ -21,7 +21,9 @@ Class quoteHelper{
 			"I don't lie the word 'alcoholic.' I like to think of myself as an advanced drinker.",
 			"There are better things in the world than alcohol. But alcohol sort of compensates for not getting them.",
 			"I don't remember much from last night, but the fact I need sunglasses to open the fridge this morning tells me it was awesome!",	
-			"In mexico we mix tequila with bad decisions, we call it life"		
+			"In mexico we mix tequila with bad decisions, we call it life",
+			"I don't abuse alcohol, I teach it a fucking lesson",
+			"The best thing about having a penis, is sharing it with people who don't"		
 		);	
 	
 		$select = rand(0,count($quotes) - 1 );

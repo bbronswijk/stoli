@@ -1,6 +1,6 @@
 <?php //$notifications = $this -> notifications[0]; ?>
 <div class="notifications">
-	<div class="notification-icon <?php echo ( $this->new != 0)?: 'empty';  ?>">
+	<div class="notification-icon <?php echo ( $this->new != 0)? '': 'empty';  ?>">
 		<i class="fa fa-bell-o"></i>
 		<?php
 			if( $this->new > 0){
@@ -33,6 +33,7 @@
 				echo '</li>';
 			}	?>
 		</ul>
+		<a href="<?php echo URL; ?>notificaties">alles bekijken</a>
 	</div>
 	<?php endif; ?>
 </div>

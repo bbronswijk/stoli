@@ -22,6 +22,7 @@
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/bottles.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/bottle.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/bottlePopup.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>js/modules/notificaties.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/notifications.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/trophies.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/dashboard.js"></script>

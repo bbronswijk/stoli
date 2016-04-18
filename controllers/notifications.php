@@ -12,9 +12,8 @@ class notifications extends Controller {
 		$this -> view -> notifications = $this -> model -> getNotifications();
 		$this -> view -> new = $this -> model -> countNew();
 		$this -> view -> renderTemplate('templates/notifications');
-
 	}
-	
+		
 	function clearNotifications(){
 		$this->model->clearNotifications();
 	}

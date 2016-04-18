@@ -16,7 +16,7 @@ var loader = (function(){
 	}
 	
 	// update xp 
-	function hideLoader(amount){
+	function hideLoader(){
 		$loader.hide();
 		$target.text('');
 		
