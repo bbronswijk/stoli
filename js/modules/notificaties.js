@@ -21,20 +21,23 @@ var notificaties = (function() {
 				
 		var action = link.base + '/notificaties/loadMore/';
 		
-		$.post(action, data, function(notifications) { 			
-			for( var i = 0; i < notifications.length; i++){
-				
-				var item = '<li id="notification_' + notifications[i].id + '">' +
-						   		'<div class="profile-img">' +
-									'<img src="' + notifications[i].picture + '" alt="profile"/>' +
-								'</div>' +
-								'<strong>' + notifications[i].last_name + ' </strong>' +
-								notifications[i].message +
-						'</li>';
-						
-				$list.append(item);
+		$.post(action, data, function(notifications) { 
+			if( notifications.length > 0 ){			
+				for( var i = 0; i < notifications.length; i++){
+					
+					var item = '<li id="notification_' + notifications[i].id + '">' +
+							   		'<div class="profile-img">' +
+										'<img src="' + notifications[i].picture + '" alt="profile"/>' +
+									'</div>' +
+									'<strong>' + notifications[i].last_name + ' </strong>' +
+									notifications[i].message +
+							'</li>';
+							
+					$list.append(item);
+				}
+			} else{
+				$loadBtn.hide();
 			}
-			
 			loader.hide();	
 		},'json');
 		

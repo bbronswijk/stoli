@@ -16,6 +16,7 @@
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/main.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/modal.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/header.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>js/modules/ideas.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/alert.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/loader.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/user.js"></script>

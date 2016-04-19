@@ -1,12 +1,16 @@
 <?php //$notifications = $this -> notifications[0]; ?>
 <div class="notifications">
 	<div class="notification-icon <?php echo ( $this->new != 0)? '': 'empty';  ?>">
+		
+		<?php if( $this->new == 0){ echo '<a href="'.URL.'notificaties">'; } ?>
 		<i class="fa fa-bell-o"></i>
 		<?php
 			if( $this->new > 0){
 				echo '<div class="counter">';
 					echo $this->new; 
 				echo '</div>';
+			} else{
+				echo '</a>';
 			}		
 		?>		
 	</div>

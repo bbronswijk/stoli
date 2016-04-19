@@ -63,6 +63,14 @@
     content: '\f091';
   }
   
+  li:nth-child(5) > a:before{
+    content: '\f0d0';
+  }
+  
+  li:nth-child(6) > a:before{
+    content: '\f0d1';
+  }
+  
   li.current-item{
     background: $sidebar-accent;
   }

@@ -22,18 +22,17 @@ var dashboard = (function() {
 			var maand = ( ( d.getMonth() + 2 ) * 2 ) - 1;
 			
 			
-			
-			for( i = 0; i < response.length; i++ ){
+			// create a array with the length of all arrays
+			for( i = 0; i < months.length; i++ ){
 				// datum = [0,0,0,0,0,0,0,0,0,0];
 				// response is list of the colum dates of all bottles
 				datums.push(0);
 			}	
 			
+			// loop trough dates from database
 			for(var i = 0; i < response.length; i++){
 				liters += parseInt(response[i].size) / 100;
-				// full date
-				
-				
+				// full date				
 				var datum = response[i].date.split(" ")[0];
 				//alert('datum:'+datum);
 				var year = datum.split("-")[0];
@@ -48,9 +47,13 @@ var dashboard = (function() {
 				}
 			}
 			
+			// slice the labels from the months array
 			var labels = months.slice(maand - 7,maand);
+			
 			var series = datums.slice(maand - 7,maand);
 			
+			//console.log('labels:'+labels);
+			//console.log('series:'+series);
 			
 				// CHART 1 verdeling flessen
 				new Chartist.Line('.dateAdded', {
