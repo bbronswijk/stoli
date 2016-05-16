@@ -16,7 +16,7 @@
 			<a href="<?php echo URL; ?>ideas">ideeën box</a>
 		</li>	
 		<li class="<?php echo $this->menuHelper->activeClass('track'); ?>">
-			<a href="<?php echo URL; ?>#">track & trace</a>
+			<a href="<?php echo URL; ?>track">track & trace</a>
 		</li>		
 	</ul>
 </nav>

@@ -13,7 +13,8 @@
  * 12		Strippenkaart: met alle spelers in ieder geval 1 keer geborreld
  * 13		XP : fles gekocht
  * 14		XP : aanwezig bij borrel
- * 15		trophy: aanwezig bij de meeste borrels
+ * 15		fles voor 12 u leeggedronken
+ * 16		trophy: aanwezig bij de meeste borrels
  *
  */
 
@@ -105,6 +106,12 @@ var trophies = (function() {
 					img : '',
 					description : 'aanwezig bij een borrel',
 					xp : 30 
+				},{
+					id : 15,
+					type : 'badge',
+					img : 'goodmorning',
+					description : 'Fles voor 12 u 's ochtends leeggedronken',
+					xp : 100
 				}];
 	
 	
@@ -149,7 +156,8 @@ var trophies = (function() {
 	}
 
 	
-	// CALCULATION TROPHIES
+	// 1. gets called after bottle is added
+	//    CALCULATION TROPHIES
 	function getTrophies(items) {
 		this.items = items;
 		// second check if bottle is added
@@ -173,6 +181,7 @@ var trophies = (function() {
 		});
 	}
 
+	// 2. check in database which badges the user already has completed
 	function _getCompleted() {
 		// fetch array met completed badges from database\
 		var action = link.base + '/trophies/checkCompleted/';
@@ -197,16 +206,8 @@ var trophies = (function() {
 			}
 		}, 'json');
 	}
-
-
-	function showBadges() {			
-		$.when.apply($, listActions).done(function(){
-			if(badges.length > 0)_render();
-			loader.hide();
-			events.emit('badgesUpdated');
-		});		
-	}
 	
+	// 3. Check if the user has completed the requirements for new badges
 	// check if the user has earned new trophies and save the ID to the array stagedTrophies
 	function _checkNewTrophies(){	
 		// elements necessary for statistics
@@ -314,9 +315,21 @@ var trophies = (function() {
 		stagedTrophies.push(14);
 		newTrophies = stagedTrophies;
 		
+		// fles voor 12 u opgedronken
+		if ($.inArray('15', completed) == -1) {
+			var time = bottle.date.split(' ')[1];
+			var hour = parseInt( time.split(':')[0] );
+			console.log('hour:'+hour);
+			if ( hour > 6 && hour < 12) {
+				// stage trophy
+				stagedTrophies.push(15);
+			}
+		}
+		
 		return;
 	}
 
+	// 4. save the badges to the datbase and create a notification
 	function _saveBadges() {	
 		loader.update('prepraring trophies..');
 		
@@ -402,7 +415,18 @@ var trophies = (function() {
 		listActions = deferreds;
 		return;
 	}
+	
+	// 5. check if there are new badges completed
+	// calls next function _render(6)
+	function showBadges() {			
+		$.when.apply($, listActions).done(function(){
+			if(badges.length > 0)_render();
+			loader.hide();
+			events.emit('badgesUpdated');
+		});		
+	}
 
+	// 6. create a carousel with new badges
 	function _render() {
 		
 		var amount = (badges.length > 1 && badges.length != 0) ? 'badges' : 'badge';
