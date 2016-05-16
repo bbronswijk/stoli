@@ -20,11 +20,14 @@ foreach ($this->userTrophies as $key => $value) {
 			$class = 'complete';
 		}
 		
-		?>
-		<li class="item trophy <?php echo $class ?>">
-			<img src="<?php echo URL; ?>img/achievements/<?php echo $value['img']; ?>.svg" alt="badge"/>
-			<p class="description"><?php echo $value['description'] ?></p>
-			<p class="xp"><?php echo $value['xp']; ?> XP</p>
-		</li>
+		// maak voor de toten trophy een uitzondering		
+		if( $value['id'] == 16 && ( in_array($value['id'], $completed) != -1 ) ){ return false; } else { ?>
+		
+			<li class="item trophy <?php echo $class ?>">
+				<img src="<?php echo URL; ?>img/achievements/<?php echo $value['img']; ?>.svg" alt="badge"/>
+				<p class="description"><?php echo $value['description'] ?></p>
+				<p class="xp"><?php echo $value['xp']; ?> XP</p>
+			</li>
+		<?php } ?>
 	<?php } ?>
 </ul>

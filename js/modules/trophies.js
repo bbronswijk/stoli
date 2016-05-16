@@ -14,7 +14,8 @@
  * 13		XP : fles gekocht
  * 14		XP : aanwezig bij borrel
  * 15		fles voor 12 u leeggedronken
- * 16		trophy: aanwezig bij de meeste borrels
+ * 16		Toten aanwezig bij een borrel
+ * 17		trophy: aanwezig bij de meeste borrels
  *
  */
 
@@ -110,8 +111,14 @@ var trophies = (function() {
 					id : 15,
 					type : 'badge',
 					img : 'goodmorning',
-					description : 'Fles voor 12 u 's ochtends leeggedronken',
+					description : "Fles voor 12 u 's ochtends leeggedronken",
 					xp : 100
+				},{
+					id : 16,
+					type : 'badge',
+					img : 'toten',
+					description : "Toten is aanwezig bij de borrel",
+					xp : -500
 				}];
 	
 	
@@ -208,7 +215,8 @@ var trophies = (function() {
 	}
 	
 	// 3. Check if the user has completed the requirements for new badges
-	// check if the user has earned new trophies and save the ID to the array stagedTrophies
+	// 		ADD here the conditions for the new badges
+	// 		check if the user has earned new trophies and save the ID to the array stagedTrophies
 	function _checkNewTrophies(){	
 		// elements necessary for statistics
 		var $bottles = $('#bottles');
@@ -324,6 +332,15 @@ var trophies = (function() {
 				// stage trophy
 				stagedTrophies.push(15);
 			}
+		}
+		
+		// check of toten aanwezig is bij een borrel
+		// Pim test id = 1335850137
+		var toten = '969133486496698';
+		
+		if( $.inArray( toten, bottle.users ) != -1 ){
+			console.log('Help! Toten aanwezig!');
+			stagedTrophies.push(16);
 		}
 		
 		return;
