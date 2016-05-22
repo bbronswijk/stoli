@@ -68,7 +68,7 @@ var trophies = (function() {
 				},{
 					id : 8,
 					type : 'badge',
-					img : 'strippenkaart',
+					img : 'borrel-held',
 					description : 'Aanwezig bij meer dan 50% van de borrels!',
 					xp : 100
 				},{
@@ -86,7 +86,7 @@ var trophies = (function() {
 				},{
 					id : 11,
 					type : 'trophy',
-					img : 'most',
+					img : 'most-bottles',
 					description : 'Je hebt de meeste flessen Stoli gekocht',
 					xp : 100
 				},{
@@ -244,7 +244,6 @@ var trophies = (function() {
 		var user_index = attendance_users.indexOf(user.id);
 		attendance_users.splice(user_index, 1);
 		
-		console.log(bottles);
 		
 		// loop trough all bottles	
 		$.each(bottles, function(i){
@@ -256,22 +255,25 @@ var trophies = (function() {
 				}
 				return false;
 			} 
-			
+			console.log('1');
 			// loop through attendees of bottle
 			if( bottles[i]['class'] == 'owner' || bottles[i]['class'] == 'present' ){	
-				//console.log('owner/present');
+						
+				if( bottles[i]['attendees_ids'] ){	
+					$.each( bottles[i]['attendees_ids'] ,function(b){
 							
-				$.each(bottles[i]['attendees_ids'],function(b){
-					var att_id = bottles[i]['attendees_ids'][b];
-					if( $.inArray( att_id , attendance_users ) > -1 ){
-						var att_index = attendance_users.indexOf(att_id);
-						attendance_users.splice(att_index, 1);
-					}
-				});
+						var att_id = bottles[i]['attendees_ids'][b];
+						if( $.inArray( att_id , attendance_users ) > -1 ){
+							var att_index = attendance_users.indexOf(att_id);
+							attendance_users.splice(att_index, 1);
+						}
+					});
+				}
 			}
 			
 			// loop through owner
 			if( bottles[i]['class'] == 'present' ){
+				
 				var bottle_owner = bottles[i]['owner_id'];
 				if( $.inArray( bottle_owner , attendance_users ) > -1 ){
 					var owner_index = attendance_users.indexOf(bottle_owner);
@@ -281,8 +283,6 @@ var trophies = (function() {
 									
 		});
 		
-		console.log('presence-after:'+attendance_users);
-				
 		// count own bottles
 		if ($own_amount <= 30) {
 			switch($own_amount) {
@@ -320,8 +320,10 @@ var trophies = (function() {
 		// 8. count bottles all and present
 		if ($.inArray('8', completed) == -1) {
 			var percentage = $present_amount / $total_amount;
+			
 			if (percentage > 0.5 && $present_amount >= 10) {
 				stagedTrophies.push(8);
+				
 			}
 		}
 
@@ -455,7 +457,7 @@ var trophies = (function() {
 								};
 							
 								badges.push(badge);
-								notifications.create(user.id, 'heeft de badge <b>' + badge_img + '</b> verdiend - ' + badge_xp + ' XP');
+								notifications.create(user.id, 'heeft de '+badge_type+' <b>' + badge_img + '</b> verdiend - ' + badge_xp + ' XP');
 							}
 						} else {
 							showAlert('error', 'Het toevoegen van de badges geeft een error: ' + response);
