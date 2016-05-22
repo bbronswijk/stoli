@@ -17,7 +17,8 @@ var bottle = (function() {
 		$.post(action, data, function(response) {
 			if( Math.floor(response) == response && $.isNumeric(response) ){
 				bottle.id = response;	
-				bottles.get(); 		
+				//Bottles.get(); 		
+			    events.emit('bottleSaved');
 			    showAlert('succes','De nieuwe fles stoli is succesvol toegevoegd!');
 			    notifications.create(user.id,'heeft een fles leeg gedronken met '+bottle.users.length+' anderen');	
 			} else{

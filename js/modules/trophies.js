@@ -165,8 +165,8 @@ var trophies = (function() {
 	
 	// 1. gets called after bottle is added
 	//    CALCULATION TROPHIES
-	function getTrophies(items) {
-		this.items = items;
+	function getTrophies(bottles) {
+		this.bottles = bottles;
 		// second check if bottle is added
 		if ( typeof bottle.size == 'undefined' && $.isNumeric(bottle.size))
 			return false;
@@ -228,6 +228,60 @@ var trophies = (function() {
 		var $total_amount = $total.length;
 				
 		var stagedTrophies = [];
+		
+		// create an array with all user_ids
+		var user_ids = [];		
+		$.each(user.users, function(i){
+			var user_id = user.users[i].id;
+			user_ids.push( user_id );
+		});
+		
+		// to check the attendance a user gets removed from the list if he has met the online user
+		// if the attendance_user array is empty the user has met with everybody
+		var attendance_users = user_ids;
+		
+		// remove online user
+		var user_index = attendance_users.indexOf(user.id);
+		attendance_users.splice(user_index, 1);
+		
+		console.log(bottles);
+		
+		// loop trough all bottles	
+		$.each(bottles, function(i){
+			
+			// exit when every user is found
+			if ( attendance_users.length === 0 ){
+				if ($.inArray('12', completed) == -1) {
+					stagedTrophies.push(12);
+				}
+				return false;
+			} 
+			
+			// loop through attendees of bottle
+			if( bottles[i]['class'] == 'owner' || bottles[i]['class'] == 'present' ){	
+				//console.log('owner/present');
+							
+				$.each(bottles[i]['attendees_ids'],function(b){
+					var att_id = bottles[i]['attendees_ids'][b];
+					if( $.inArray( att_id , attendance_users ) > -1 ){
+						var att_index = attendance_users.indexOf(att_id);
+						attendance_users.splice(att_index, 1);
+					}
+				});
+			}
+			
+			// loop through owner
+			if( bottles[i]['class'] == 'present' ){
+				var bottle_owner = bottles[i]['owner_id'];
+				if( $.inArray( bottle_owner , attendance_users ) > -1 ){
+					var owner_index = attendance_users.indexOf(bottle_owner);
+					attendance_users.splice(owner_index, 1);
+				}
+ 			}
+									
+		});
+		
+		console.log('presence-after:'+attendance_users);
 				
 		// count own bottles
 		if ($own_amount <= 30) {
@@ -263,7 +317,7 @@ var trophies = (function() {
 			}
 		}
 
-		// count bottles all and present
+		// 8. count bottles all and present
 		if ($.inArray('8', completed) == -1) {
 			var percentage = $present_amount / $total_amount;
 			if (percentage > 0.5 && $present_amount >= 10) {
@@ -271,26 +325,26 @@ var trophies = (function() {
 			}
 		}
 
-		// fles in je eentje opgedronken
+		// 9. fles in je eentje opgedronken
 		if ($.inArray('9', completed) == -1 && bottle.duration == 480) {
 			if (bottle.users.length == 0) {
 				stagedTrophies.push(9);
 			}
 		}
 
-		// fles in je eentje binnen een dag opgedronken
+		// 10. fles in je eentje binnen een dag opgedronken
 		if ($.inArray('10', completed) == -1) {
 			if (bottle.users.length == 0 && bottle.duration < 480) {
 				stagedTrophies.push(10);
 			}
 		}
 
-		// meeste flessen
+		// 11. meeste flessen
 		if ($.inArray('11', completed) == -1) {
 			var count_names = {};
 			// count every
-			for ( i = 0; i < items.length; i++) {
-				var last_name = items[i]['last_name'];
+			for ( i = 0; i < bottles.length; i++) {
+				var last_name = bottles[i]['last_name'];
 				if (!( last_name in count_names)) {
 					count_names[last_name] = 1;
 				} else {
@@ -316,31 +370,40 @@ var trophies = (function() {
 			}
 		}
 		
-		// voeg extra xp toe voor het toevoegen van een fles
+		// 12. met iedereen geborreld changed on top!
+				
+		// 13. voeg extra xp toe voor het toevoegen van een fles
 		stagedTrophies.push(13);
 		
-		// voeg xp toe aan aanwezigen
+		// 14. voeg xp toe aan aanwezigen
 		stagedTrophies.push(14);
 		newTrophies = stagedTrophies;
 		
-		// fles voor 12 u opgedronken
+		// 15. fles voor 12 u opgedronken
 		if ($.inArray('15', completed) == -1) {
 			var time = bottle.date.split(' ')[1];
 			var hour = parseInt( time.split(':')[0] );
-			console.log('hour:'+hour);
+			
 			if ( hour > 6 && hour < 12) {
 				// stage trophy
 				stagedTrophies.push(15);
 			}
 		}
 		
-		// check of toten aanwezig is bij een borrel
+		// 16. check of toten aanwezig is bij een borrel
 		// Pim test id = 1335850137
-		var toten = '969133486496698';
+		// bram test id: var toten = '1149793451697900';
+		var toten = '969133486496698';		
 		
-		if( $.inArray( toten, bottle.users ) != -1 ){
-			console.log('Help! Toten aanwezig!');
+		if( bottle.user_id == toten ){
+			//console.log('Help! Toten aanwezig!');
 			stagedTrophies.push(16);
+		}
+		
+		// 17. trophy: aanwezig bij de meeste borrels
+		if ($.inArray('17', completed) == -1) {
+			
+			
 		}
 		
 		return;
@@ -477,6 +540,10 @@ var trophies = (function() {
 		badges = [];
 
 	}
+	
+	return{
+		//users : users
+	};
 
 })();
 

@@ -25,6 +25,7 @@ class Dashboard_Model extends Model {
 	
 	public function getUsers(){
 		$query = $this->db->query("SELECT
+									  users.id,
 									  users.last_name,
 									  SUM(trophies.id= 13) as bottles,
 									  SUM(trophies.id= 11) as most,

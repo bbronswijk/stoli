@@ -2,9 +2,10 @@
  * @author Bram
  */
 
-var bottles = (function() {
-	
+var Bottles = (function() {
+		
 	// bind events
+	events.on('bottleSaved',getBottles);
 	events.on('bottleDeleted',getBottles);
 	events.on('PageReady',getBottles);
 	// getbottles is called directly when bottle is added
@@ -21,9 +22,10 @@ var bottles = (function() {
 					loader.update('building list bottles...');
 					//alert(JSON.stringify(trophies));
 					//	alert('id 0:'+trophies[8].id+' trophies[8].trophies :'+trophies[8].trophies );		
+					
 					for( var i = 0; i < bottles.length; i++){
 						$id = bottles[i].id;
-
+						
 						// trophies[i].trophies && 0 > i < 7
 						if(i < trophies.length){
 							if( trophies[i].trophies ){
@@ -32,8 +34,7 @@ var bottles = (function() {
 								$trophies = 0;
 							}			
 						}
-					
-												
+										
 						// trophies
 						bottles[i]['trophies'] = $trophies;
 											
@@ -42,6 +43,7 @@ var bottles = (function() {
 							$attendees_ids = attendees[$id][0]['ids'].split(',');
 							// add attendees to object
 							bottles[i]['attendees'] = $attendees;
+							bottles[i]['attendees_ids'] = $attendees_ids;
 						}
 						
 						// size
@@ -62,6 +64,9 @@ var bottles = (function() {
 						
 						// class
 						bottles[i]['class'] = '';
+						
+						// set owner id 
+						bottles[i]['owner_id'] = bottles[i]['owner'];
 											
 						// get owner id 
 						if( user.id === bottles[i]['owner'] ){
@@ -70,16 +75,19 @@ var bottles = (function() {
 						} else{
 							// get attendees id
 							bottles[i]['owner'] = false;
-							for( var b = 0; b < $attendees_ids.length; b++ ){
-								if( user.id === $attendees_ids[b] ){
-									bottles[i]['class'] = 'present';
+							if( typeof $attendees_ids != 'undefined'){
+								for( var b = 0; b < $attendees_ids.length; b++ ){
+									if( user.id === $attendees_ids[b] ){
+										bottles[i]['class'] = 'present';
+									}
 								}
 							}
 						}
 	
 					}
 					
-					//alert(JSON.stringify(bottles));
+					//console.log(bottles);
+					
 					render(bottles);
 		
 				},'json');
