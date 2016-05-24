@@ -39,7 +39,9 @@ class Bootstrap {
 		// set methods and variables
 		if (isset($url[2])) {
 			// if param is set
-			$controller->{$url[1]}($url[2]);
+			if(method_exists($controller, $url[1])){
+				$controller->{$url[1]}($url[2]);
+			}
 		} else {
 			if (isset($url[1])) {
 				// if only action is set check if it exists

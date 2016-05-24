@@ -1,7 +1,9 @@
-<h1 class="page-title">Deelnemers</h1>
 
-<ul id="users" class="items">
-	<?php
+<h1 class="page-title">Trophies | <?php foreach ($this->user as $key => $value) { echo $value['first_name'] . ' ' . $value['last_name']; } ?></h1>
+
+<ul id="user-tropies" class="items">
+	
+		<?php
 	
 	$levels = array(
 					0 		=> 'Level 0',
@@ -17,7 +19,7 @@
 					1000 	=> 'Level 10'
 				);
 	
-	foreach ($this->users as $key => $value) {
+	foreach ($this->user as $key => $value) {
 		
 		$userXP = $value['xp'];
 		
@@ -28,9 +30,10 @@
 				$userLevel = $level;
 			}
 		}
-		echo '<a href="'.URL.'/deelnemers/trophies/'.$value['id'].'">';
+		
 		echo '<li class="item user" id="user_' . $value['id'] . '">';	
-			echo '<div class="profile-picture">';		
+			echo '<div class="profile-picture">';	
+					echo '<img src="'.URL.'img/achievements/1-fles.svg" alt="badge"/>';	
 				if($sock = @fsockopen('www.google.com', 80)){
 					echo '<img src="'.$value['picture'].'" alt="profile"/>';
 				} else{
@@ -58,7 +61,16 @@
 				echo '<div class="stats"><p>0 xp</p><p>Level 0</p></div>'; 	
 			}
 		echo '</li>';
-		echo '</a>';
+
 	}
 ?>
+	
+	
+	<?php foreach ($this->trophies as $key => $value) { ?>
+			<li class="item trophy complete">
+				<img src="<?php echo URL; ?>img/achievements/<?php echo $value['img']; ?>.svg" alt="badge"/>
+				<p class="description"><?php echo $value['description'] ?></p>
+				<p class="xp"><?php echo $value['xp']; ?> XP</p>
+			</li>
+	<?php } ?>
 </ul>

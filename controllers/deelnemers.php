@@ -13,7 +13,12 @@ class deelnemers extends Controller {
 		$this -> view -> render('deelnemers/index');
 	}
 	
-	
+	function trophies($user_id){
+		$this -> view -> user = $this -> model -> getUser($user_id);
+		$this -> view -> trophies = $this -> model -> getUserTrophies($user_id);
+		$this -> view -> render('deelnemers/trophies');
+		
+	}
 
 
 }

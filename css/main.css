@@ -1090,6 +1090,8 @@ body {
       padding-top: 50px;
       text-align: center;
       margin-right: 24%; }
+      #track .trace i:hover {
+        cursor: pointer; }
       @media screen and (max-width: 1000px) {
         #track .trace i {
           margin-right: 22%; } }
@@ -1115,6 +1117,7 @@ body {
           #track .trace i span {
             font-size: 8px; } }
       #track .trace i .tooltip {
+        display: none;
         position: absolute;
         margin-top: -105px;
         background: grey;
@@ -1146,6 +1149,8 @@ body {
         -ms-transform: rotate(45deg);
         -o-transform: rotate(45deg);
         transform: rotate(45deg); }
+    #track .trace i.last .tooltip {
+      display: block; }
     #track .trace i:before {
       position: absolute;
       top: -5px;
@@ -1229,7 +1234,9 @@ body {
           top: 12px; } }
     #track .trace .progress {
       border-top: 8px solid #ed8c00;
-      width: calc( 50% - 30px );
+      width: 0;
+      position: absolute;
+      top: 0px;
       animation-name: width;
       animation-duration: 1s;
       -webkit-transform-origin: 0% 50%;
@@ -1237,7 +1244,9 @@ body {
       -o-transform-origin: 0% 50%;
       transform-origin: 0% 50%; }
     #track .trace .inactive {
-      border-top: 8px solid #D4D4D4; }
+      overflow: hidden;
+      background: #D4D4D4;
+      height: 8px; }
   #track .description {
     margin-top: 50px; }
     #track .description h3 {
@@ -1248,22 +1257,48 @@ body {
       color: #ed8c00;
       font-size: 22px; }
 
-#trophies .trophy {
+.trophy {
   opacity: 0.5; }
-  #trophies .trophy img {
+  .trophy img {
     height: auto;
     width: 100%;
     opacity: 0.75; }
-  #trophies .trophy .description {
+  .trophy .description {
     margin-top: 10px;
     font-weight: bold;
     height: 42px; }
-  #trophies .trophy .xp {
+  .trophy .xp {
     color: #c3c3c3;
     text-transform: uppercase;
     margin-top: 10px; }
-#trophies .trophy.complete {
+
+.trophy.complete {
   opacity: 1; }
+
+#user-tropies .user .profile-picture {
+  width: 62%;
+  position: relative;
+  height: auto;
+  margin-top: 13%; }
+  #user-tropies .user .profile-picture img:first-child {
+    width: 100%;
+    height: auto; }
+  #user-tropies .user .profile-picture img:last-child {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    top: 0;
+    left: 0; }
+#user-tropies .user .stats {
+  margin-bottom: 14%; }
+
+#user-tropies-user.items {
+  overflow: initial;
+  padding: 0; }
+
+#user-tropies.items {
+  overflow: initial;
+  padding: 0; }
 
 .quotes {
   margin-top: 20px;

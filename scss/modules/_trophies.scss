@@ -1,4 +1,4 @@
-#trophies{
+
   
   .trophy{  
     opacity:0.5;
@@ -26,4 +26,37 @@
     opacity: 1;
   }
   
+#user-tropies{
+  .user{
+    .profile-picture{
+      width: 62%;
+      position: relative;
+      height: auto;
+      margin-top: 13%;
+      img:first-child{
+        width: 100%;
+        height: auto;
+      }
+      img:last-child{
+        position:absolute;
+        height: 100%;
+        width: auto;
+        top: 0;
+        left: 0;
+      }
+    }
+    .stats{
+      margin-bottom: 14%;
+    }
+  }
+}
+
+#user-tropies-user.items{
+  overflow: initial;
+  padding: 0;
+}
+
+#user-tropies.items{
+  overflow: initial;
+  padding: 0;
 }

@@ -51,6 +51,10 @@
       text-align: center;
       margin-right: 24%;
       
+      &:hover{
+        cursor:pointer;
+      }
+      
       @media screen and (max-width: 1000px) {
         margin-right: 22%;
       }
@@ -76,6 +80,7 @@
       }
       
       .tooltip{
+        display: none;
         position: absolute;
         margin-top: -105px;
         background: grey;
@@ -102,6 +107,10 @@
           left: 21px;
           @include crossBrowser(transform, rotate(45deg));
       }
+    }
+    
+    i.last .tooltip{
+      display: block;
     }
     
     i:before{
@@ -185,7 +194,9 @@
     
     .progress{
       border-top: 8px solid $color-orange; 
-      width: calc( 50% - 30px );
+      width: 0; 
+      position: absolute;
+      top: 0px;
       animation-name: width;
       animation-duration: 1s;
       
@@ -193,7 +204,9 @@
     }
     
     .inactive{
-        border-top: 8px solid #D4D4D4; 
+      overflow: hidden;
+      background: #D4D4D4; 
+      height: 8px;
      } 
     
     

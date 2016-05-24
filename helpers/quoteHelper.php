@@ -24,7 +24,8 @@ Class quoteHelper{
 			"In mexico we mix tequila with bad decisions, we call it life",
 			"I don't abuse alcohol, I teach it a fucking lesson",
 			"The best thing about having a penis, is sharing it with people who don't",
-			"It's stupid when girls say they can't find a nice guy. Yet they ignore me! It's like saying you're hungry when there's a hot dog on the ground outside!"	
+			"It's stupid when girls say they can't find a nice guy. Yet they ignore me! It's like saying you're hungry when there's a hot dog on the ground outside!",
+			"Just went over my bank account, and figured out I can live comfortably without working for the rest of my life. As long as I die on thursday."	
 		);	
 	
 		$select = rand(0,count($quotes) - 1 );
