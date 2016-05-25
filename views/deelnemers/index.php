@@ -28,7 +28,7 @@
 				$userLevel = $level;
 			}
 		}
-		echo '<a href="'.URL.'/deelnemers/trophies/'.$value['id'].'">';
+		echo '<a href="'.URL.'deelnemers/trophies/'.$value['id'].'">';
 		echo '<li class="item user" id="user_' . $value['id'] . '">';	
 			echo '<div class="profile-picture">';		
 				if($sock = @fsockopen('www.google.com', 80)){

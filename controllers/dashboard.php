@@ -20,5 +20,9 @@ class dashboard extends Controller {
 	function getUsers(){
 		$this -> model -> getUsers();
 	}
+	
+	function getPresence(){
+		$this -> model -> getPresence();
+	}
 
 }

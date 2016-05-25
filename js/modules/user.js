@@ -12,6 +12,7 @@ var user = (function(){
 	var $own = $bottles.find('.bottle.owner');
 	var $own_amount = $own.length;
 	var users = null;
+	var presence = null;
 	
 	levels = [{
 					level: 1,
@@ -108,13 +109,18 @@ var user = (function(){
 		$.get('dashboard/getUsers', function(users) {
 			user.users = users;
 		},'json');
+		
+		$.get('dashboard/getPresence', function(presence) {
+			user.presence = presence;
+		},'json');
 	}
 	
 	return {
 		id : id,
 		last_name : last_name,
 		levels : levels,
-		users: users
+		users: users,
+		presence : presence
 	};
 
 })();

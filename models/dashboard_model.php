@@ -41,7 +41,7 @@ class Dashboard_Model extends Model {
 									  users.id
 									ORDER BY
 									  users.last_name ASC
-								") or die('Error: bottles_Model getBottles');
+								") or die('Error: Dashboard_Model getUsers');
 	
 		
 		$query->setFetchMode(PDO::FETCH_ASSOC);
@@ -50,5 +50,37 @@ class Dashboard_Model extends Model {
 		echo json_encode($data);
 	}
 
+	public function getPresence(){
+		$query = $this->db->query("
+								SELECT 
+								  result.id,
+									COUNT(*) AS present
+								FROM
+								(SELECT
+								  users.id,
+								  bottles_users.bottle_id
+								FROM
+								  users  
+								LEFT JOIN bottles_users ON
+								  bottles_users.user_id = users.id
+								UNION
+								SELECT
+								  users.id,
+								  bottles.id
+								FROM
+								  users  
+								LEFT JOIN bottles ON
+								  bottles.user_id = users.id
+								) as result
+								GROUP BY
+								  result.id
+								") or die ('Error: Dashboard_Model getPresence');
+		
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$query->execute();
+		$data = $query->fetchAll();
+		echo json_encode($data);
+		
+	}
 
 }

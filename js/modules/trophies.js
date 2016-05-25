@@ -74,13 +74,13 @@ var trophies = (function() {
 				},{
 					id : 9,
 					type : 'badge',
-					img : 'no-img',
+					img : 'lonely-alcoholic',
 					description : 'Fles in je eentje leeggedronken',
 					xp : 100
 				},{
 					id : 10,
 					type : 'badge',
-					img : 'no-img',
+					img : 'very-lonely-alcoholic',
 					description : 'Fles in je eentje  binnen een dag leeggedronken',
 					xp : 100
 				},{
@@ -124,6 +124,18 @@ var trophies = (function() {
 					type : 'trophy',
 					img : 'onwijs-populair',
 					description : "Meeste mensen aanwezig op een borrel",
+					xp : 100
+				},{
+					id : 18,
+					type : 'badge',
+					img : 'streak-5',
+					description : "Streak van 5 flessen Stoli",
+					xp : 100
+				},{
+					id : 19,
+					type : 'trophy',
+					img : 'stamgast',
+					description : "Aanwezig bij de meeste borrels",
 					xp : 100
 				}];
 	
@@ -269,14 +281,16 @@ var trophies = (function() {
 									
 					if( number_attendees > max_attendees ){
 						owner_max_attendees = bottles[i]['owner_id'];
+						max_attendees = number_attendees;
 					}
 				}
 			}
 							
-			
+			// 12. check of je een keer met alle spelers hebt geborreld.
 			// exit when every user is found
 			if ( attendance_users.length === 0 ){
-				if ($.inArray('12', completed) == -1) {
+				// only add the trophy once to the staging array
+				if ($.inArray('12', completed) == -1 && $.inArray(12, stagedTrophies) == -1) {
 					stagedTrophies.push(12);
 				}
 				//return false; // for the streak you need to loop trhouh all bottles
@@ -284,54 +298,58 @@ var trophies = (function() {
 			
 			// loop through attendees of bottle // owner was present at all these borrels
 			if( bottles[i]['class'] == 'owner' || bottles[i]['class'] == 'present' ){	
-				console.log( bottles[i]['id']+'  '+bottles[i]['date-en'] )
+				//console.log( bottles[i]['id']+'  '+bottles[i]['date-en'] )
 				// look for streaks
 				var new_date = new Date(bottles[i]['date-en']);
 
 				if( streak.length == 0 ){
 				    streak.push(bottles[i]['date-en']);
-				    return true;
-				}
-				  
-				var previous_date = streak[streak.length -1];
-				var last_date = new Date(previous_date);
-				var next_date = new Date(previous_date);
-				next_date.setDate( next_date.getDate() - 1 );
-				
-				if( new_date.getTime()  == last_date.getTime()  || new_date.getTime()  == next_date.getTime()  ){
-				    streak.push(bottles[i]['date-en']);
-				} else{
-					if( max_streak < streak.length ){
-				    	max_streak = streak.length;
-				    	console.log(streak);
-				    	streak = [];
+				    //return true;
+				} else{					  
+					var previous_date = streak[streak.length -1];
+					var last_date = new Date(previous_date);
+					var next_date = new Date(previous_date);
+					next_date.setDate( next_date.getDate() - 1 );
+					
+					if( new_date.getTime()  == last_date.getTime()  || new_date.getTime()  == next_date.getTime()  ){
+					    streak.push(bottles[i]['date-en']);
+					} else{
+						if( max_streak < streak.length ){
+					    	max_streak = streak.length;
+					    	//console.log(streak);
+					    	streak = [];
+						}
 					}
 				}
 				
-				// continue with counting max attendees		
-				if( bottles[i]['attendees_ids'] ){	
-					$.each( bottles[i]['attendees_ids'] ,function(b){
-							
-						var att_id = bottles[i]['attendees_ids'][b];
-						if( $.inArray( att_id , attendance_users ) > -1 ){
-							var att_index = attendance_users.indexOf(att_id);
-							attendance_users.splice(att_index, 1);
-						}
-					});
+				// continue with counting max attendees
+				if ($.inArray('12', completed) == -1 && attendance_users.length > 0  ){		
+					if( bottles[i]['attendees_ids'] ){	
+						// check with whom you have met
+						$.each( bottles[i]['attendees_ids'] ,function(b){
+							// remove the attendee from the array of users	
+							var att_id = bottles[i]['attendees_ids'][b];
+							if( $.inArray( att_id , attendance_users ) > -1 ){
+								var att_index = attendance_users.indexOf(att_id);
+								attendance_users.splice(att_index, 1);
+							}
+						});
+					}
 				}
 			}
 			
-			// loop through owner
+			// check with which people as owner you have met loop through owner
 			if( bottles[i]['class'] == 'present' ){
-				
-				var bottle_owner = bottles[i]['owner_id'];
-				if( $.inArray( bottle_owner , attendance_users ) > -1 ){
-					var owner_index = attendance_users.indexOf(bottle_owner);
-					attendance_users.splice(owner_index, 1);
+				if ($.inArray('12', completed) == -1 && attendance_users.length > 0  ){	
+					var bottle_owner = bottles[i]['owner_id'];
+					if( $.inArray( bottle_owner , attendance_users ) > -1 ){
+						var owner_index = attendance_users.indexOf(bottle_owner);
+						attendance_users.splice(owner_index, 1);
+					}
 				}
  			}
 									
-		});
+		}); // EXIT EACH BOTTLES
 		
 		// count own bottles
 		if ($own_amount <= 30) {
@@ -455,47 +473,56 @@ var trophies = (function() {
 		
 		// 17. trophy: aanwezig bij de meeste borrels
 		if ($.inArray('17', completed) == -1) {
-			if( owner_max_attendees = bottle.user_id ){
+			console.log('max_attendees: '+max_attendees);
+			console.log('owner_max_attendees: '+owner_max_attendees);
+			if( owner_max_attendees == bottle.user_id ){
 				stagedTrophies.push(17);
 			}
 			
 		}
 		
-		// 18. streak 2 dagen
+		// 18. streak 5 dagen
 		if ($.inArray('18', completed) == -1) {
 			
 			if( max_streak < streak.length ){
 		    	max_streak = streak.length;
 		    }
-		    console.log('max streak : '+max_streak);
-		    if( max_streak >= 2){
-		    	console.log('streak 2 added');
-		    	//stagedTrophies.push(18);
+		    if( max_streak >= 5){
+		    	stagedTrophies.push(18);
 		    }
 		}
 		
-		// 19. streak 3 dagen
+		// 19. meeste aanwezig bij borrels
 		if ($.inArray('19', completed) == -1) {
-			if( max_streak < streak.length ){
-				console.log(streak);
-		    	max_streak = streak.length;
-		    }
-		    if( max_streak >= 3){
-		    	console.log('streak 3 added');
-		    	//stagedTrophies.push(19);
-		    }
+			var max_presence = 0;
+			//var max_user_id = null;
+			
+			// loop trough all users for there presence 			
+			$.each(user.presence,function(i){
+								
+				var cur_presence = user.presence[i]['present'];
+				var cur_user_id = user.presence[i]['id'];
+				
+				// exept voor the online user
+				if( user.id == cur_user_id )
+					return true;
+				
+				if( max_presence < cur_presence ){
+					max_presence = parseInt(cur_presence);
+					//max_user_id = cur_user_id;
+				}
+				
+				
+			});
+			
+			console.log('max_presence: '+max_presence);
+			console.log('own present: '+$present_amount);
+			
+			if( max_presence < $present_amount )
+		    	stagedTrophies.push(19);
 		}
 		
-		// 20. streak 4 dagen
-		if ($.inArray('20', completed) == -1) {
-			if( max_streak < streak.length ){
-		    	max_streak = streak.length;
-		    }
-		    if( max_streak >= 4){
-		    	console.log('streak 4 added');
-		    	//stagedTrophies.push(20);
-		    }
-		}
+		
 		
 		return;
 	}
@@ -515,7 +542,7 @@ var trophies = (function() {
 	    	var badge_img = trophies[cur_trophy]['img'];
 	    	var badge_description = trophies[cur_trophy]['description'];
 	    	var badge_xp = trophies[cur_trophy]['xp'];
-	    	
+	    	console.log('badge_id: '+badge_id);
 			// select right model
 			if (badge_type === 'trophy') {
 				// delete old row with trophy and insert new one
@@ -525,6 +552,7 @@ var trophies = (function() {
 				var action = link.base + '/trophies/insertTrophy/';
 			}
 			
+			// 14. is xp voor aanwezig zijn
 			if(badge_id != 14){
 				var data = {
 					bottle_id : bottle.id,
