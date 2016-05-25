@@ -1070,32 +1070,30 @@ body {
     opacity: 0; }
   100% {
     opacity: 1; } }
-#track {
+.track {
   background: #fff;
   padding: 80px 45px;
   margin-top: 20px;
   border: 1px solid #E4E4E4;
   border-radius: 10px; }
   @media screen and (max-width: 1000px) {
-    #track {
+    .track {
       padding: 80px 15px; } }
-  #track .trace {
+  .track .trace {
     width: 90%;
     box-sizing: border-box;
     margin-top: 30px;
     position: relative;
     padding: 0 30px; }
-    #track .trace i {
+    .track .trace i {
       font-family: "Kalinga";
       padding-top: 50px;
       text-align: center;
       margin-right: 24%; }
-      #track .trace i:hover {
-        cursor: pointer; }
       @media screen and (max-width: 1000px) {
-        #track .trace i {
+        .track .trace i {
           margin-right: 22%; } }
-      #track .trace i span {
+      .track .trace i span {
         text-align: center;
         opacity: 0;
         white-space: nowrap;
@@ -1111,12 +1109,12 @@ body {
         -o-animation-fill-mode: both;
         animation-fill-mode: both; }
         @media screen and (max-width: 600px) {
-          #track .trace i span {
+          .track .trace i span {
             font-size: 12px; } }
         @media screen and (max-width: 500px) {
-          #track .trace i span {
+          .track .trace i span {
             font-size: 8px; } }
-      #track .trace i .tooltip {
+      .track .trace i .tooltip {
         display: none;
         position: absolute;
         margin-top: -105px;
@@ -1135,9 +1133,9 @@ body {
         -o-animation-fill-mode: both;
         animation-fill-mode: both; }
         @media screen and (max-width: 500px) {
-          #track .trace i .tooltip {
+          .track .trace i .tooltip {
             font-size: 10px; } }
-      #track .trace i .tooltip:after {
+      .track .trace i .tooltip:after {
         content: '\A';
         position: absolute;
         width: 10px;
@@ -1149,9 +1147,9 @@ body {
         -ms-transform: rotate(45deg);
         -o-transform: rotate(45deg);
         transform: rotate(45deg); }
-    #track .trace i.last .tooltip {
+    .track .trace i.last .tooltip {
       display: block; }
-    #track .trace i:before {
+    .track .trace i:before {
       position: absolute;
       top: -5px;
       font-family: fontawesome;
@@ -1170,69 +1168,69 @@ body {
       -o-animation-fill-mode: both;
       animation-fill-mode: both; }
       @media screen and (max-width: 500px) {
-        #track .trace i:before {
+        .track .trace i:before {
           font-size: 15px;
           width: 20px;
           height: 20px;
           line-height: 20px; } }
-    #track .trace i.active:before {
+    .track .trace i.active:before {
       background: #ed8c00; }
-    #track .trace i:nth-of-type(1) span {
+    .track .trace i:nth-of-type(1) span {
       -webkit-animation-delay: 0.5s;
       -ms-animation-delay: 0.5s;
       -o-animation-delay: 0.5s;
       animation-delay: 0.5s; }
-    #track .trace i:nth-of-type(2):before {
+    .track .trace i:nth-of-type(2):before {
       -webkit-animation-delay: 0.4s;
       -ms-animation-delay: 0.4s;
       -o-animation-delay: 0.4s;
       animation-delay: 0.4s; }
-    #track .trace i:nth-of-type(2) span {
+    .track .trace i:nth-of-type(2) span {
       -webkit-animation-delay: 0.9s;
       -ms-animation-delay: 0.9s;
       -o-animation-delay: 0.9s;
       animation-delay: 0.9s; }
-    #track .trace i:nth-of-type(3):before {
+    .track .trace i:nth-of-type(3):before {
       -webkit-animation-delay: 0.6s;
       -ms-animation-delay: 0.6s;
       -o-animation-delay: 0.6s;
       animation-delay: 0.6s; }
-    #track .trace i:nth-of-type(3) span {
+    .track .trace i:nth-of-type(3) span {
       -webkit-animation-delay: 1.1s;
       -ms-animation-delay: 1.1s;
       -o-animation-delay: 1.1s;
       animation-delay: 1.1s; }
-    #track .trace i:nth-of-type(4):before {
+    .track .trace i:nth-of-type(4):before {
       -webkit-animation-delay: 0.8s;
       -ms-animation-delay: 0.8s;
       -o-animation-delay: 0.8s;
       animation-delay: 0.8s; }
-    #track .trace i:nth-of-type(4) span {
+    .track .trace i:nth-of-type(4) span {
       -webkit-animation-delay: 1.3s;
       -ms-animation-delay: 1.3s;
       -o-animation-delay: 1.3s;
       animation-delay: 1.3s; }
-    #track .trace i:nth-of-type(5):before {
+    .track .trace i:nth-of-type(5):before {
       -webkit-animation-delay: 1s;
       -ms-animation-delay: 1s;
       -o-animation-delay: 1s;
       animation-delay: 1s; }
-    #track .trace i:nth-of-type(5) span {
+    .track .trace i:nth-of-type(5) span {
       -webkit-animation-delay: 1.5s;
       -ms-animation-delay: 1.5s;
       -o-animation-delay: 1.5s;
       animation-delay: 1.5s; }
-    #track .trace i:last-of-type {
+    .track .trace i:last-of-type {
       margin-right: 0; }
-    #track .trace .bar {
+    .track .trace .bar {
       position: absolute;
       width: calc( 100% - 60px );
       top: 18px;
       margin: 0 15px; }
       @media screen and (max-width: 500px) {
-        #track .trace .bar {
+        .track .trace .bar {
           top: 12px; } }
-    #track .trace .progress {
+    .track .trace .progress {
       border-top: 8px solid #ed8c00;
       width: 0;
       position: absolute;
@@ -1243,19 +1241,59 @@ body {
       -ms-transform-origin: 0% 50%;
       -o-transform-origin: 0% 50%;
       transform-origin: 0% 50%; }
-    #track .trace .inactive {
+    .track .trace .progress.shop {
+      width: 0; }
+    .track .trace .progress.bought {
+      width: calc( 25% - 30px ); }
+    .track .trace .progress.cold {
+      width: calc( 50% - 30px ); }
+    .track .trace .progress.borrel {
+      width: calc( 75% - 30px ); }
+    .track .trace .progress.empty {
+      width: 100%; }
+    .track .trace .inactive {
       overflow: hidden;
       background: #D4D4D4;
       height: 8px; }
-  #track .description {
+  .track .description {
     margin-top: 50px; }
-    #track .description h3 {
+    .track .description h3 {
       font-family: "Akzidenz Bold"; }
-    #track .description h1 {
+    .track .description h1 {
       font-size: 32px; }
-    #track .description h2 {
+    .track .description h2 {
       color: #ed8c00;
       font-size: 22px; }
+
+.track.owner i:hover {
+  cursor: pointer; }
+
+#trackPopupModule {
+  display: none; }
+  #trackPopupModule #choose-attendees {
+    height: 250px;
+    overflow: auto; }
+    #trackPopupModule #choose-attendees li:before {
+      font-family: fontawesome;
+      content: '\f183';
+      font-size: 30px;
+      position: absolute;
+      margin-top: -40px;
+      left: 42%; }
+    #trackPopupModule #choose-attendees li {
+      opacity: 0.6;
+      list-style: none;
+      width: 33%;
+      margin-top: 40px;
+      float: left;
+      text-align: center;
+      position: relative; }
+      #trackPopupModule #choose-attendees li:hover {
+        cursor: pointer; }
+    #trackPopupModule #choose-attendees li.active {
+      opacity: 1; }
+    #trackPopupModule #choose-attendees li.active:before {
+      content: '\f1ae'; }
 
 .trophy {
   opacity: 0.5; }

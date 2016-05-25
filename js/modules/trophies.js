@@ -119,6 +119,12 @@ var trophies = (function() {
 					img : 'toten',
 					description : "Toten is aanwezig bij de borrel",
 					xp : -500
+				},{
+					id : 17,
+					type : 'trophy',
+					img : 'onwijs-populair',
+					description : "Meeste mensen aanwezig op een borrel",
+					xp : 100
 				}];
 	
 	
@@ -243,22 +249,66 @@ var trophies = (function() {
 		// remove online user
 		var user_index = attendance_users.indexOf(user.id);
 		attendance_users.splice(user_index, 1);
+				
+		// variables for trophy 17 most attendees onwijs-populair
+		var max_attendees = 0;
+		var owner_max_attendees = null;
 		
-		
+		// variables for streak trophy 
+		var streak = [];
+		var max_streak = 0;
+				
 		// loop trough all bottles	
 		$.each(bottles, function(i){
+					
+			
+			// check if which bottle has max attendees 
+			if ($.inArray('17', completed) == -1) {
+				if( typeof bottles[i]['attendees_ids'] != 'undefined' ){
+					var number_attendees = bottles[i]['attendees_ids'].length;
+									
+					if( number_attendees > max_attendees ){
+						owner_max_attendees = bottles[i]['owner_id'];
+					}
+				}
+			}
+							
 			
 			// exit when every user is found
 			if ( attendance_users.length === 0 ){
 				if ($.inArray('12', completed) == -1) {
 					stagedTrophies.push(12);
 				}
-				return false;
+				//return false; // for the streak you need to loop trhouh all bottles
 			} 
-			console.log('1');
-			// loop through attendees of bottle
+			
+			// loop through attendees of bottle // owner was present at all these borrels
 			if( bottles[i]['class'] == 'owner' || bottles[i]['class'] == 'present' ){	
-						
+				console.log( bottles[i]['id']+'  '+bottles[i]['date-en'] )
+				// look for streaks
+				var new_date = new Date(bottles[i]['date-en']);
+
+				if( streak.length == 0 ){
+				    streak.push(bottles[i]['date-en']);
+				    return true;
+				}
+				  
+				var previous_date = streak[streak.length -1];
+				var last_date = new Date(previous_date);
+				var next_date = new Date(previous_date);
+				next_date.setDate( next_date.getDate() - 1 );
+				
+				if( new_date.getTime()  == last_date.getTime()  || new_date.getTime()  == next_date.getTime()  ){
+				    streak.push(bottles[i]['date-en']);
+				} else{
+					if( max_streak < streak.length ){
+				    	max_streak = streak.length;
+				    	console.log(streak);
+				    	streak = [];
+					}
+				}
+				
+				// continue with counting max attendees		
 				if( bottles[i]['attendees_ids'] ){	
 					$.each( bottles[i]['attendees_ids'] ,function(b){
 							
@@ -394,8 +444,9 @@ var trophies = (function() {
 		
 		// 16. check of toten aanwezig is bij een borrel
 		// Pim test id = 1335850137
-		// bram test id: var toten = '1149793451697900';
+		// bram test id: 
 		var toten = '969133486496698';		
+		//var toten = '1149793451697900';
 		
 		if( bottle.user_id == toten ){
 			//console.log('Help! Toten aanwezig!');
@@ -404,8 +455,46 @@ var trophies = (function() {
 		
 		// 17. trophy: aanwezig bij de meeste borrels
 		if ($.inArray('17', completed) == -1) {
+			if( owner_max_attendees = bottle.user_id ){
+				stagedTrophies.push(17);
+			}
 			
+		}
+		
+		// 18. streak 2 dagen
+		if ($.inArray('18', completed) == -1) {
 			
+			if( max_streak < streak.length ){
+		    	max_streak = streak.length;
+		    }
+		    console.log('max streak : '+max_streak);
+		    if( max_streak >= 2){
+		    	console.log('streak 2 added');
+		    	//stagedTrophies.push(18);
+		    }
+		}
+		
+		// 19. streak 3 dagen
+		if ($.inArray('19', completed) == -1) {
+			if( max_streak < streak.length ){
+				console.log(streak);
+		    	max_streak = streak.length;
+		    }
+		    if( max_streak >= 3){
+		    	console.log('streak 3 added');
+		    	//stagedTrophies.push(19);
+		    }
+		}
+		
+		// 20. streak 4 dagen
+		if ($.inArray('20', completed) == -1) {
+			if( max_streak < streak.length ){
+		    	max_streak = streak.length;
+		    }
+		    if( max_streak >= 4){
+		    	console.log('streak 4 added');
+		    	//stagedTrophies.push(20);
+		    }
 		}
 		
 		return;

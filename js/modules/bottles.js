@@ -53,6 +53,10 @@ var Bottles = (function() {
 						var date = bottles[i]['date'];
 						var date = date.split(" ");
 						var formattedDate = new Date(date[0]);
+						
+						// set english date
+						bottles[i]['date-en'] = date[0];
+						
 						var d = formattedDate.getDate();
 						var m =  formattedDate.getMonth();
 						var month = ['jan','feb','mrt','apr','mei','jun','jul','aug','sept','okt','nov','dec'];
@@ -99,7 +103,7 @@ var Bottles = (function() {
 	
 	function render(bottles){
 		loader.update('rendering list...');	
-		
+				
 		$.when(
 			$.get('views/bottles/bottle.mst',function(template){	
 				var view = { bottles : bottles};

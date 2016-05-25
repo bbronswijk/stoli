@@ -58,6 +58,7 @@
 				<div class="question">
 					Hoe laat was de fles op?
 				</div>
+				
 				<input type="date" class="bottle-date" value="<?php echo date('Y-m-d'); ?>"/>
 				<input type="time" class="bottle-time" step="1" value="<?php echo date('H:i:s'); ?>"/>
 				<hr>

@@ -24,6 +24,9 @@ class View {
 				require 'views/bottles/add_modal.php';
 				require 'views/bottles/badge_modal.php';
 			} 
+			if( $this->controller == 'track' ){
+				require 'views/track/add_modal.php';
+			} 
 			require 'templates/footer.php';
 		}else{
 			require 'templates/header.php';

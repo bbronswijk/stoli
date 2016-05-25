@@ -21,7 +21,7 @@ foreach ($this->userTrophies as $key => $value) {
 		}
 		
 		// maak voor de toten trophy een uitzondering		
-		if( $value['id'] == 16 && ( in_array($value['id'], $completed) != -1 ) ){ return false; } else { ?>
+		if( $value['id'] == 16 && ( in_array($value['id'], $completed) != -1 ) ){ }else{?>
 		
 			<li class="item trophy <?php echo $class ?>">
 				<img src="<?php echo URL; ?>img/achievements/<?php echo $value['img']; ?>.svg" alt="badge"/>

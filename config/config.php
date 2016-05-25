@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/Amsterdam'); 
+
 define("URL","http://localhost:8080/stoli/");
 	
 define('FBAPPID','1725206204365263');

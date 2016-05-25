@@ -1,6 +1,6 @@
 <h1 class="page-title">Deelnemers</h1>
-
-<ul id="users" class="items">
+<p>Klik op een deelnemer om zijn trophies te bekijken.</p>
+<ul id="users" class="items" style="margin-top: 15px;">
 	<?php
 	
 	$levels = array(
