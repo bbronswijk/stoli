@@ -116,6 +116,8 @@ var dashboard = (function() {
 					trophiesLabels.push( lastName );
 				}
 				
+				
+				
 				if(response[i].most == 1){
 					mostBottlesUser = lastName;
 				}
@@ -125,6 +127,7 @@ var dashboard = (function() {
 				}
 				
 			}
+			
 			
 			
 			$('td.amount-bottles').text(totalBottles);
@@ -146,8 +149,8 @@ var dashboard = (function() {
 			
 			if(typeof mostBottlesUser != 'undefined') 
 				$('td.most-bottles').text(mostBottlesUser);
-			
-			if(typeof stoliKoning != 'undefined') 
+						
+			if(typeof stoliKoning != 'undefined') 			
 				$('td.stoli-koning').text(stoliKoning);
 			
 			
