@@ -10,19 +10,11 @@
  * 
  */
 /* BASE - Base styles, variables, mixins, etc */
-@font-face {
-  font-family: 'Akzidenz Bold';
-  src: url("../fonts/Berthold Akzidenz Grotesk Bold.eot");
-  src: url("../fonts/Berthold Akzidenz Grotesk Bold.woff") format("woff"), url("../fonts/Berthold Akzidenz Grotesk Bold.ttf") format("truetype"), url("../fonts/Berthold Akzidenz Grotesk Bold.svg") format("svg"); }
-@font-face {
-  font-family: 'Kalinga';
-  src: url("../fonts/kalinga.eot");
-  src: url("../fonts/kalinga.eot?#iefix") format("embedded-opentype"), url("../fonts/kalinga.woff") format("woff"), url("../fonts/kalinga.ttf") format("truetype"), url("../fonts/kalinga.svg#kalinga") format("svg"); }
 *, html {
   margin: 0;
   padding: 0;
   color: #31383E;
-  font-family: 'Kalinga';
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 100;
   line-height: 1.5; }
@@ -98,7 +90,7 @@ body {
     background: #f8f3f0; }
     .panel .content h1.page-title {
       margin-bottom: 15px;
-      font-family: "Akzidenz Bold";
+      font-family: "Montserrat", sans-serif;
       text-transform: uppercase;
       font-size: 24px;
       display: inline-block;
@@ -224,7 +216,7 @@ body {
   .sidebar li a {
     display: inline-block;
     padding: 10px 10%;
-    font-family: "Akzidenz Bold";
+    font-family: "Montserrat", sans-serif;
     list-style: none;
     color: #fff;
     text-transform: capitalize;
@@ -327,7 +319,7 @@ body {
       box-sizing: border-box;
       width: 100%;
       text-align: center;
-      font-family: "Akzidenz Bold";
+      font-family: "Montserrat", sans-serif;
       text-transform: capitalize;
       padding: 6px;
       background: #fff;
@@ -435,7 +427,7 @@ body {
   .add-bottle-survey #part1 #choose-size img {
     height: 180px; }
 .add-bottle-survey #part1 .bottle-size {
-  font-family: 'Akzidenz Bold';
+  font-family: "Montserrat", sans-serif;
   font-size: 18px; }
 .add-bottle-survey #part2 #choose-attendees {
   height: 250px;
@@ -567,7 +559,7 @@ body {
     float: left;
     list-style: none; }
     #bottlesHeader ul#bottle-filter li.filter-item a {
-      font-family: 'Akzidenz Bold';
+      font-family: "Montserrat", sans-serif;
       text-transform: uppercase;
       padding: 5px 15px;
       color: #c3c3c3;
@@ -617,7 +609,7 @@ body {
   .bottle .bottle-people:hover > .bottle-attendees {
     display: block; }
   .bottle .bottle-people .owner {
-    font-family: 'Akzidenz Bold'; }
+    font-family: "Montserrat", sans-serif; }
   .bottle .bottle-people .bottle-attendees {
     display: none;
     position: absolute;
@@ -653,7 +645,7 @@ body {
 
 .btn {
   font-size: 14px;
-  font-family: 'Akzidenz Bold';
+  font-family: "Montserrat", sans-serif;
   display: inline-block;
   position: relative;
   text-transform: capitalize;
@@ -763,7 +755,7 @@ body {
   .graph .chart, .welcome .chart {
     margin: 5px; }
   .graph h2, .welcome h2 {
-    font-family: "Akzidenz Bold";
+    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 14px;
     padding: 8px 16px;
@@ -775,7 +767,7 @@ body {
       height: 15px;
       width: 100%; }
     .graph table th, .welcome table th {
-      font-family: "Akzidenz Bold";
+      font-family: "Montserrat", sans-serif;
       text-align: left;
       width: 110px;
       text-transform: capitalize; }
@@ -792,11 +784,11 @@ body {
 .welcome h2 {
   padding: 15px 30px 0 30px;
   margin: 0;
-  font-family: "Kalinga";
+  font-family: "Open Sans", sans-serif;
   font-size: 24px;
   border-bottom: none; }
 .welcome h3 {
-  font-family: "Kalinga";
+  font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 24px;
   color: #c3c3c3;
@@ -832,7 +824,7 @@ body {
   margin-top: 10px;
   margin-right: 15px;
   border: 1px solid #D0D0D0;
-  width: calc( 100% - 185px ); }
+  width: calc( 100% - 205px ); }
 #ideas .list-ideas {
   padding-top: 20px; }
   #ideas .list-ideas .idea {
@@ -892,7 +884,7 @@ body {
     text-align: center;
     background: #fff;
     width: 100%;
-    font-family: 'Akzidenz Bold';
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
@@ -940,7 +932,7 @@ body {
     height: 100%;
     width: auto; }
 .list-notificaties li strong {
-  font-family: "Akzidenz Bold"; }
+  font-family: "Montserrat", sans-serif; }
 
 .top_bar .notification-icon {
   display: inline-block;
@@ -956,7 +948,7 @@ body {
     position: absolute;
     background: #df1a25;
     color: #fff;
-    font-family: "Akzidenz Bold";
+    font-family: "Montserrat", sans-serif;
     border-radius: 50%;
     font-size: 12px;
     height: 18px;
@@ -1010,7 +1002,7 @@ body {
     box-sizing: border-box;
     width: 100%;
     text-align: center;
-    font-family: "Akzidenz Bold";
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     padding: 12px; }
   .top_bar .notifications-container ul li {
@@ -1034,7 +1026,7 @@ body {
       height: 100%;
       width: auto; }
   .top_bar .notifications-container ul li strong {
-    font-family: "Akzidenz Bold"; }
+    font-family: "Montserrat", sans-serif; }
   .top_bar .notifications-container a {
     text-align: center;
     display: block;
@@ -1086,7 +1078,7 @@ body {
     position: relative;
     padding: 0 30px; }
     .track .trace i {
-      font-family: "Kalinga";
+      font-family: "Open Sans", sans-serif;
       padding-top: 50px;
       text-align: center;
       margin-right: 24%; }
@@ -1258,7 +1250,7 @@ body {
   .track .description {
     margin-top: 50px; }
     .track .description h3 {
-      font-family: "Akzidenz Bold"; }
+      font-family: "Montserrat", sans-serif; }
     .track .description h1 {
       font-size: 32px; }
     .track .description h2 {

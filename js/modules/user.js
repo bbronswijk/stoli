@@ -108,6 +108,9 @@ var user = (function(){
 		
 		$.get('dashboard/getUsers', function(users) {
 			user.users = users;
+			$.each(user.users, function(i){
+				user.users[i].saldo = 0;
+			});
 		},'json');
 		
 		$.get('dashboard/getPresence', function(presence) {

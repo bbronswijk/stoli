@@ -26,12 +26,12 @@
 			<td> </td>
 		</tr>
 		<tr>
-			<th>Stoli Koning</th>
+			<th>Meeste Flessen</th>
 			<td class="most-bottles"></td>
 		</tr>
 		<tr>
-			<th> </th>
-			<td> </td>
+			<th>Stoli Koning</th>
+			<td class="stoli-koning"> </td>
 		</tr>
 		<tr>
 			<th>Hoogste Level</th>

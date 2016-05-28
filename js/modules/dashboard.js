@@ -120,6 +120,10 @@ var dashboard = (function() {
 					mostBottlesUser = lastName;
 				}
 				
+				if(response[i].koning == 1){
+					stoliKoning = lastName;
+				}
+				
 			}
 			
 			
@@ -139,7 +143,12 @@ var dashboard = (function() {
 			mostXPUser = xpsLabels[mostXP];		
 			
 			$('td.most-xp').text(mostXPUser);
-			if(typeof mostBottlesUser != 'undefined') $('td.most-bottles').text(mostBottlesUser);
+			
+			if(typeof mostBottlesUser != 'undefined') 
+				$('td.most-bottles').text(mostBottlesUser);
+			
+			if(typeof stoliKoning != 'undefined') 
+				$('td.stoli-koning').text(stoliKoning);
 			
 			
 			var user_level = 0;

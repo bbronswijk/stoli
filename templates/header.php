@@ -14,10 +14,12 @@
 
 		<!-- stylesheets -->
 		<!--<link rel="stylesheet" href="https://file.myfontastic.com/7f4QfTp7u8s5odez2vphfY/icons.css">	-->	
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="<?php echo URL; ?>css/main.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>css/queries.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>css/vendor.css">
-		<link rel="stylesheet" href="<?php echo URL; ?>css/stoli-icons.css">	
+		<link rel="stylesheet" href="<?php echo URL; ?>css/stoli-icons.css">	'
+		<script src="https://use.fontawesome.com/3f64b8f72f.js"></script>
 		<?php 
 			if($sock = @fsockopen('www.google.com', 80)){
 						echo '<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">';

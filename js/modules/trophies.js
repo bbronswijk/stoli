@@ -137,6 +137,12 @@ var trophies = (function() {
 					img : 'stamgast',
 					description : "Aanwezig bij de meeste borrels",
 					xp : 100
+				},{
+					id : 20,
+					type : 'trophy',
+					img : 'stoli-koning',
+					description : "Meeste liters Stoli gedronken",
+					xp : 100
 				}];
 	
 	
@@ -272,7 +278,47 @@ var trophies = (function() {
 				
 		// loop trough all bottles	
 		$.each(bottles, function(i){
-					
+			
+			// 20. meeste liters stoli
+			if ($.inArray('20', completed) == -1) {
+				// bereken saldo per persoon per fles
+				var size = bottles[i]['size'];
+				
+				// check if there are attendees
+				if( typeof bottles[i]['attendees_ids'] != 'undefined' ){
+					var number_attendees = bottles[i]['attendees_ids'].length + 1;			
+				}else{
+					var number_attendees = 1;
+				}
+				
+				// calc saldo
+				var saldo = size/number_attendees;	
+				
+				// voeg het saldo toe aan de owner 				
+				$.each(user.users,function(c){
+					if( user.users[c].id == bottle.user_id){
+						//console.log('owner_id:'+owner_id+' krijgt :'+saldo+' user index'+c);
+						user.users[c].saldo = saldo;
+						//console.log('index: '+c+' saldo:'+user.users[c].saldo );
+						return false;
+					}
+				});
+				
+				// voeg het saldo toe aan elke attendee
+				if( typeof bottles[i]['attendees_ids'] != 'undefined' ){
+					$.each(bottles[i]['attendees_ids'],function(b){
+						// get index of cur_id
+						var att_id = bottles[i]['attendees_ids'][b];
+						
+						$.each(user.users,function(c){
+							if( user.users[c].id == att_id){
+								user.users[c].saldo += saldo;
+								return false;
+							}
+						});
+					});
+				}
+			}					
 			
 			// check if which bottle has max attendees 
 			if ($.inArray('17', completed) == -1) {
@@ -350,7 +396,7 @@ var trophies = (function() {
  			}
 									
 		}); // EXIT EACH BOTTLES
-		
+				
 		// count own bottles
 		if ($own_amount <= 30) {
 			switch($own_amount) {
@@ -473,8 +519,8 @@ var trophies = (function() {
 		
 		// 17. trophy: aanwezig bij de meeste borrels
 		if ($.inArray('17', completed) == -1) {
-			console.log('max_attendees: '+max_attendees);
-			console.log('owner_max_attendees: '+owner_max_attendees);
+			//console.log('max_attendees: '+max_attendees);
+			//console.log('owner_max_attendees: '+owner_max_attendees);
 			if( owner_max_attendees == bottle.user_id ){
 				stagedTrophies.push(17);
 			}
@@ -497,7 +543,7 @@ var trophies = (function() {
 			var max_presence = 0;
 			//var max_user_id = null;
 			
-			// loop trough all users for there presence 			
+			// loop trough all users for their presence 			
 			$.each(user.presence,function(i){
 								
 				var cur_presence = user.presence[i]['present'];
@@ -511,18 +557,36 @@ var trophies = (function() {
 					max_presence = parseInt(cur_presence);
 					//max_user_id = cur_user_id;
 				}
-				
-				
+								
 			});
-			
-			console.log('max_presence: '+max_presence);
-			console.log('own present: '+$present_amount);
-			
+						
 			if( max_presence < $present_amount )
 		    	stagedTrophies.push(19);
 		}
 		
-		
+		// meeste liter stoli gedronken : bottle.user_id
+		if ($.inArray('20', completed) == -1) {
+			var max_saldo = 0;
+			var max_saldo_id = null;
+			
+			var saldo = [];
+			
+			// loop trough all users for their presence 			
+			$.each(user.users,function(i){
+				var cur_saldo = user.users[i].saldo;
+				var cur_saldo_id = user.users[i].id;
+				
+				if( max_saldo < cur_saldo ){					
+					max_saldo = parseInt(cur_saldo);
+					max_saldo_id = cur_saldo_id;
+				}
+				
+				console.log('user:'+cur_saldo_id+' > saldo:'+cur_saldo);
+			});
+			
+			if( max_saldo_id = bottle.user_id )
+		    	stagedTrophies.push(20);
+		}
 		
 		return;
 	}
@@ -542,7 +606,7 @@ var trophies = (function() {
 	    	var badge_img = trophies[cur_trophy]['img'];
 	    	var badge_description = trophies[cur_trophy]['description'];
 	    	var badge_xp = trophies[cur_trophy]['xp'];
-	    	console.log('badge_id: '+badge_id);
+	    	
 			// select right model
 			if (badge_type === 'trophy') {
 				// delete old row with trophy and insert new one

@@ -29,6 +29,7 @@ class Dashboard_Model extends Model {
 									  users.last_name,
 									  SUM(trophies.id= 13) as bottles,
 									  SUM(trophies.id= 11) as most,
+									  SUM(trophies.id= 20) as koning,
 									  SUM(trophies.type='trophy') + SUM(trophies.type='badge') as trophies,
 									  SUM(trophies.xp) as xp
 									FROM
