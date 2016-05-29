@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div class="user-name">
-			<?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?>
+			<a href="<?php echo URL; ?>deelnemers/trophies/<?php echo $user['id']; ?>"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></a>
 		</div>
 		<div class="user-level">
 			<p class="level" id="xp"><?php echo $user['xp']; ?> XP</p><p class="level" id="level">Level 1</p>

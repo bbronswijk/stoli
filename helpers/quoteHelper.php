@@ -18,7 +18,7 @@ Class quoteHelper{
 			"When life gives tou  lemons. Slice those suckers up and find some tequila",
 			"Drinking rum before 10 AM makes you a pirate not an alcoholic",
 			"I'm worried that if I give up drinking, I'll replace it with murdering",
-			"I don't lie the word 'alcoholic.' I like to think of myself as an advanced drinker.",
+			"I don't like the word 'alcoholic.' I like to think of myself as an advanced drinker.",
 			"There are better things in the world than alcohol. But alcohol sort of compensates for not getting them.",
 			"I don't remember much from last night, but the fact I need sunglasses to open the fridge this morning tells me it was awesome!",	
 			"In mexico we mix tequila with bad decisions, we call it life",

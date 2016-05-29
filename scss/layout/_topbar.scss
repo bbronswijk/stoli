@@ -128,6 +128,13 @@
         
         .user-name{
           font-weight: bold;
+          
+          a{
+            text-decoration: none;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
         }
         
         .user-level{

@@ -15,6 +15,12 @@ class trophies extends Controller {
 		$this -> view -> trophies = $this -> model -> getAllTrophies();
 		$this -> view -> render('trophies/index');
 	}
+	
+	function users($trophy_id){
+		$this -> view -> trophy = $this -> model -> getTrophy($trophy_id);
+		$this -> view -> users = $this -> model -> getTrophyUsers($trophy_id);
+		$this -> view -> render('trophies/users');
+	}
 
 	function insertTrophy(){
 		$this->model->insertTrophy();

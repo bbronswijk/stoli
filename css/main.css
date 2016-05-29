@@ -359,6 +359,10 @@ body {
       margin-right: 5px; }
     .top_bar .online-user-container .user-name {
       font-weight: bold; }
+      .top_bar .online-user-container .user-name a {
+        text-decoration: none; }
+        .top_bar .online-user-container .user-name a:hover {
+          text-decoration: underline; }
     .top_bar .online-user-container .user-level {
       font-size: 0.8em;
       padding-bottom: 22px;
@@ -739,6 +743,35 @@ body {
   .user .stats p:first-child {
     border-right: 1px solid #c3c3c3;
     text-align: right; }
+
+#trophy-users .item {
+  padding: 4% 2% 4% 2%; }
+#trophy-users .user {
+  padding: 4% 2% 5.2% 2%; }
+  #trophy-users .user .profile-picture {
+    width: 62%;
+    position: relative;
+    height: auto;
+    margin-top: 13%; }
+    #trophy-users .user .profile-picture img:first-child {
+      width: 100%;
+      height: auto; }
+    #trophy-users .user .profile-picture img:last-child {
+      position: absolute;
+      height: 100%;
+      width: auto;
+      top: 0;
+      left: 0; }
+  #trophy-users .user .stats {
+    margin-bottom: 14%; }
+
+#user-tropies-user.items {
+  overflow: initial;
+  padding: 0; }
+
+#user-tropies.items {
+  overflow: initial;
+  padding: 0; }
 
 .graph, .welcome {
   background: #fff;

@@ -9,7 +9,7 @@
 		<meta name="author" content="Bram Bronswijk">
 		<meta name="viewport" id="viewport" content="width=device-width, user-scalable=no">
 
-		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="shortcut icon" href="<?php echo URL; ?>favicon.ico" />
 		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
 		<!-- stylesheets -->
@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="<?php echo URL; ?>css/queries.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>css/vendor.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>css/stoli-icons.css">	'
-		<script src="https://use.fontawesome.com/3f64b8f72f.js"></script>
+		
 		<?php 
 			if($sock = @fsockopen('www.google.com', 80)){
 						echo '<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">';
@@ -27,6 +27,9 @@
 				echo '<link rel="stylesheet" href="'.URL.'css/chartist.min.css">';
 			}
 		?>
+		
+		
+		
 		
 	</head>
 	<body class="<?php echo $this->bodyHelper->bodyClass(); ?>-page">

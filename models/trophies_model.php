@@ -109,5 +109,46 @@ class Trophies_Model extends Model {
 		$data = $query->fetchAll();
 		echo json_encode($data);
 	}
+	
+	public function getTrophy($trophy_id){
+		$query = $this->db->prepare("
+						SELECT 
+							id,
+							img,
+							description,
+							xp
+						FROM 
+							trophies
+						WHERE 
+							id = :trophy_id "			
+						) or die('Error: trophy_Model getTrophy');
+						
+		$query->bindParam(':trophy_id', $trophy_id);
+		$query->execute();
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$data = $query->fetchAll();
+		return $data;	
+	}
+	
+	public function getTrophyUsers($trophy_id){
+		$query = $this->db->prepare("SELECT
+										  	users.id,
+									  		users.picture,
+									  		users.first_name,
+									  		users.last_name
+										FROM
+										  	bottles_trophies
+										LEFT JOIN users ON 
+											bottles_trophies.user_id = users.id
+										WHERE
+										  bottles_trophies.trophy_id = :trophy_id 
+								") or die('Error: Trophy_Model getTrophyUsers');
+	
+		$query->bindParam(':trophy_id', $trophy_id);
+		$query->execute();
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$data = $query->fetchAll();
+		return $data;
+	}
 
 }

@@ -28,6 +28,7 @@
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/track.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/trophies.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>js/modules/dashboard.js"></script>
+<script type="text/javascript" src="https://use.fontawesome.com/3f64b8f72f.js"></script>
 
 </body>
 </html>
