@@ -11,7 +11,8 @@ class Login_Model extends Model {
 	}
 
 	public function auth() {
-		
+		date_default_timezone_set('Europe/Amsterdam');
+			
 		Session::init();
 		
 		$fb = new Facebook\Facebook([
@@ -28,12 +29,12 @@ class Login_Model extends Model {
 			echo 'Graph returned an error: ' . $e -> getMessage();
 			exit;
 		} catch(Facebook\Exceptions\FacebookSDKException $e) {
-			echo '( 1 ) Facebook SDK returned an error: ' . $e -> getMessage();
+			//echo '( b1 ) Facebook SDK returned an error: ' . $e -> getMessage();
 			
 			// set custom session 
 			// TODO check why $helper->getLoginUrl() runs twice..
 			$session = $_SESSION['FBRLH_' . 'state'];
-			$url = 'https://www.facebook.com/v2.5/dialog/oauth?client_id=1725206204365263&state='.$session.'&response_type=code&sdk=php-sdk-5.1.2&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fstoli%2Flogin%2Fauth&scope=';
+			$url = 'https://www.facebook.com/v2.5/dialog/oauth?client_id='.FBAPPID.'&state='.$session.'&response_type=code&sdk=php-sdk-5.1.2&redirect_uri='.URL.'login%2Fauth&scope=';
 			header('location: '.$url);
 			
 			exit;
@@ -56,7 +57,7 @@ class Login_Model extends Model {
 		// The OAuth 2.0 client handler helps us manage access tokens
 		$oAuth2Client = $fb -> getOAuth2Client();
 		$tokenMetadata = $oAuth2Client -> debugToken($accessToken);
-		$tokenMetadata -> validateAppId('1725206204365263');
+		$tokenMetadata -> validateAppId(FBAPPID);
 		$tokenMetadata -> validateExpiration();
 
 		if (!$accessToken -> isLongLived()) {
@@ -73,7 +74,7 @@ class Login_Model extends Model {
 		
 		// getting basic info about logged-in user
 		try {
-			$request = $fb->get('/me?fields=id,name,first_name,last_name,picture.height(150)',$accessToken);
+			$request = $fb->get('/me?fields=id,name,first_name,last_name,email,picture.height(150)',$accessToken);
 			$profile = $request->getGraphUser();
 		} catch(Facebook\Exceptions\FacebookResponseException $e) {
 			// When Graph returns an error
@@ -95,21 +96,24 @@ class Login_Model extends Model {
 		$count = $sth->rowCount();
 		
 		if( $count == 0 ){
-			date_default_timezone_set('Europe/Amsterdam');
 			$datum = date('Y/m/d h:i:s', time());
+			
 			// put new user in DB here				
 			$add = $this->db->prepare("INSERT INTO users
-				(id, first_name, last_name, picture, created, modified )
-				VALUES (:id, :first_name, :last_name, :picture, :created, :modified)
+				(id, first_name, last_name, email, picture, created, modified )
+				VALUES (:id, :first_name, :last_name, :email, :picture, :created, :modified)
 				");
 			$add->bindParam(':id', $profile['id']);
 			$add->bindParam(':first_name', $profile['first_name']);
 			$add->bindParam(':last_name', $profile['last_name']);
+			$add->bindParam(':email', $profile['email']);
 			$add->bindParam(':picture', $profile['picture']['url']);
 			$add->bindParam(':created', $datum);
 			$add->bindParam(':modified', $datum);
+			// increase $count
 			$count = $add->execute();
 			
+			// double check see above
 			if($count > 0){
 				// create notification --> should have its own model?
 				$user = $profile['id'];
@@ -124,6 +128,30 @@ class Login_Model extends Model {
 				$query->bindParam(':message', $message);
 				$query->execute();				
 			}
+		} else if( $count == 1 ){
+			$datum = date('Y/m/d h:i:s', time());
+			
+			// put new user in DB here				
+			$update = $this->db->prepare("UPDATE 
+											users
+										SET
+											first_name = :first_name, 
+											last_name = :last_name, 
+											email = :email, 
+											picture = :picture, 
+											modified = :modified
+										WHERE
+											id = :id
+				") or die('Error: notifications_Model updateUser');
+				
+			$update->bindParam(':id', $profile['id']);
+			$update->bindParam(':first_name', $profile['first_name']);
+			$update->bindParam(':last_name', $profile['last_name']);
+			$update->bindParam(':email', $profile['email']);
+			$update->bindParam(':picture', $profile['picture']['url']);
+			$update->bindParam(':modified', $datum);
+			// increase $count
+			$update->execute();
 		}
 		
 		// tell controller authentication is done

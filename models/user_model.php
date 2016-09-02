@@ -51,8 +51,9 @@ class User_Model extends Model {
 		$user_id = Session::get('fb_user_id');
 		
 		$query = $this->db->prepare("SELECT 
-										trophies.type,
-										trophies.xp 
+										SUM(trophies.id= 21) as tax,
+									  	SUM(trophies.type='trophy') + SUM(trophies.type='badge') as trophies,
+									  	SUM(trophies.xp) as xp
 									FROM 
 										bottles_trophies 
 									LEFT JOIN trophies ON
@@ -67,7 +68,7 @@ class User_Model extends Model {
 		$query->execute();
 		$data = $query->fetchAll();
 			
-		echo json_encode($data);
+		return $data;
 	}
 	
 	

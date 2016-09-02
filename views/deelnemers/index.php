@@ -4,27 +4,27 @@
 	<?php
 	
 	$levels = array(
-					0 		=> 'Level 0',
-					100 	=> 'Level 1',
-					200 	=> 'Level 2',
-					300		=> 'Level 3',
-					400 	=> 'Level 4',
-					500 	=> 'Level 5',
-					600 	=> 'Level 6',
-					700 	=> 'Level 7',
-					800 	=> 'Level 8',
-					900 	=> 'Level 9',
-					1000 	=> 'Level 10'
+					0 		=> 'sober',
+					100 	=> 'tipsy',
+					300 	=> 'horny',
+					600		=> 'reckless',
+					1000 	=> 'drunk',
+					1500 	=> 'hammered',
+					2100 	=> 'trainwreck',
+					2800 	=> 'wasted',
+					3600 	=> 'black out',
+					4500 	=> 'coma',
+					5500 	=> 'probably dead'
 				);
 	
 	foreach ($this->users as $key => $value) {
 		
 		$userXP = $value['xp'];
 		
-		$userLevel = 'level 0';
+		$userLevel =  $levels[0];
 
 		foreach( $levels as $xp => $level ){
-			if( $userXP > $xp ){
+			if( $userXP >= $xp ){
 				$userLevel = $level;
 			}
 		}
@@ -32,7 +32,7 @@
 		echo '<li class="item user" id="user_' . $value['id'] . '">';	
 			echo '<div class="profile-picture">';		
 				if($sock = @fsockopen('www.google.com', 80)){
-					echo '<img src="'.$value['picture'].'" alt="profile"/>';
+					echo '<img src="http://graph.facebook.com/'.$value['id'].'/picture?type=large" alt="profile"/>';
 				} else{
 					echo '<img src="'.URL.'img/profile.png" alt="profile"/>';
 				}
@@ -55,7 +55,7 @@
 			if(!empty($value['xp'])){
 				echo '<div class="stats"><p>'.$value['xp'].' XP</p><p>'.$userLevel.'<p></div>'; 
 			} else{
-				echo '<div class="stats"><p>0 xp</p><p>Level 0</p></div>'; 	
+				echo '<div class="stats"><p>0 xp</p><p>'.$userLevel.'</p></div>'; 	
 			}
 		echo '</li>';
 		echo '</a>';

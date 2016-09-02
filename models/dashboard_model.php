@@ -26,10 +26,12 @@ class Dashboard_Model extends Model {
 	public function getUsers(){
 		$query = $this->db->query("SELECT
 									  users.id,
+									  users.first_name,
 									  users.last_name,
 									  SUM(trophies.id= 13) as bottles,
 									  SUM(trophies.id= 11) as most,
 									  SUM(trophies.id= 20) as koning,
+									  SUM(trophies.id= 21) as tax,
 									  SUM(trophies.type='trophy') + SUM(trophies.type='badge') as trophies,
 									  SUM(trophies.xp) as xp
 									FROM
@@ -51,6 +53,9 @@ class Dashboard_Model extends Model {
 		echo json_encode($data);
 	}
 
+	// get attendees from bottles_users
+	// get owner from bottles
+		
 	public function getPresence(){
 		$query = $this->db->query("
 								SELECT 
@@ -70,7 +75,7 @@ class Dashboard_Model extends Model {
 								  bottles.id
 								FROM
 								  users  
-								LEFT JOIN bottles ON
+								JOIN bottles ON
 								  bottles.user_id = users.id
 								) as result
 								GROUP BY

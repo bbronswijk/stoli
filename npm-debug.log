@@ -1,0 +1,53 @@
+8961 verbose false,C:\xampp\htdocs\stoli\node_modules,C:\xampp\htdocs\stoli\node_modules\flightplan\node_modules\prompt\node_modules\utile\node_modules unbuild i@0.3.5
+8962 info postuninstall i@0.3.5
+8963 silly gunzTarPerm modes [ '755', '644' ]
+8964 silly gunzTarPerm extractEntry .npmignore
+8965 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+8966 silly gunzTarPerm extractEntry README.md
+8967 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+8968 silly gunzTarPerm extractEntry README.md
+8969 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+8970 silly gunzTarPerm extractEntry which.js
+8971 silly gunzTarPerm modified mode [ 'which.js', 438, 420 ]
+8972 error tar.unpack error reading C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389770-0.9772007728461176\tmp.tgz
+8973 silly lockFile 8a0715ef-89770-0-9772007728461176-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389770-0.9772007728461176\package
+8974 silly lockFile 8a0715ef-89770-0-9772007728461176-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389770-0.9772007728461176\package
+8975 silly gunzTarPerm modes [ '755', '644' ]
+8976 silly gunzTarPerm modes [ '755', '644' ]
+8977 silly gunzTarPerm modes [ '755', '644' ]
+8978 error tar.unpack error reading C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389770-0.5206394551787525\tmp.tgz
+8979 silly lockFile 9163833f-89770-0-5206394551787525-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389770-0.5206394551787525\package
+8980 silly lockFile 9163833f-89770-0-5206394551787525-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389770-0.5206394551787525\package
+8981 error tar.unpack error reading C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389772-0.03319945861585438\tmp.tgz
+8982 silly lockFile 08d0129a-9772-0-03319945861585438-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389772-0.03319945861585438\package
+8983 silly lockFile 08d0129a-9772-0-03319945861585438-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389772-0.03319945861585438\package
+8984 error tar.unpack error reading C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389773-0.5870733179617673\tmp.tgz
+8985 silly lockFile 3a1d05d5-89773-0-5870733179617673-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389773-0.5870733179617673\package
+8986 silly lockFile 3a1d05d5-89773-0-5870733179617673-package tar://C:\Users\bramb\AppData\Local\Temp\npm-8972\1466170389773-0.5870733179617673\package
+8987 error Error: EPERM, lstat 'C:\xampp\htdocs\stoli\node_modules\flightplan\node_modules\liftoff\node_modules\findup-sync\node_modules\resolve-dir\node_modules\global-modules\node_modules\global-prefix\node_modules\ini\package.json'
+8987 error  { [Error: EPERM, lstat 'C:\xampp\htdocs\stoli\node_modules\flightplan\node_modules\liftoff\node_modules\findup-sync\node_modules\resolve-dir\node_modules\global-modules\node_modules\global-prefix\node_modules\ini\package.json']
+8987 error   errno: 50,
+8987 error   code: 'EPERM',
+8987 error   path: 'C:\\xampp\\htdocs\\stoli\\node_modules\\flightplan\\node_modules\\liftoff\\node_modules\\findup-sync\\node_modules\\resolve-dir\\node_modules\\global-modules\\node_modules\\global-prefix\\node_modules\\ini\\package.json',
+8987 error   fstream_type: 'File',
+8987 error   fstream_path: 'C:\\xampp\\htdocs\\stoli\\node_modules\\flightplan\\node_modules\\liftoff\\node_modules\\findup-sync\\node_modules\\resolve-dir\\node_modules\\global-modules\\node_modules\\global-prefix\\node_modules\\ini\\package.json',
+8987 error   fstream_class: 'FileWriter',
+8987 error   fstream_stack:
+8987 error    [ 'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\node_modules\\fstream\\lib\\writer.js:284:26',
+8987 error      'Object.oncomplete (fs.js:107:15)' ] }
+8988 error Please try running this command again as root/Administrator.
+8989 error System Windows_NT 6.2.9200
+8990 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "flightplan"
+8991 error cwd C:\xampp\htdocs\stoli
+8992 error node -v v0.10.13
+8993 error npm -v 1.3.2
+8994 error path C:\xampp\htdocs\stoli\node_modules\flightplan\node_modules\liftoff\node_modules\findup-sync\node_modules\resolve-dir\node_modules\global-modules\node_modules\global-prefix\node_modules\ini\package.json
+8995 error fstream_path C:\xampp\htdocs\stoli\node_modules\flightplan\node_modules\liftoff\node_modules\findup-sync\node_modules\resolve-dir\node_modules\global-modules\node_modules\global-prefix\node_modules\ini\package.json
+8996 error fstream_type File
+8997 error fstream_class FileWriter
+8998 error code EPERM
+8999 error errno 50
+9000 error stack Error: EPERM, lstat 'C:\xampp\htdocs\stoli\node_modules\flightplan\node_modules\liftoff\node_modules\findup-sync\node_modules\resolve-dir\node_modules\global-modules\node_modules\global-prefix\node_modules\ini\package.json'
+9001 error fstream_stack C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\fstream\lib\writer.js:284:26
+9001 error fstream_stack Object.oncomplete (fs.js:107:15)
+9002 verbose exit [ 50, true ]

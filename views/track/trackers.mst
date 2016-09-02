@@ -22,5 +22,5 @@
 		</div>
 {{/trackers}}
 {{^trackers}}
-	<p style="margin-top: 30px;">Er worden op dit moment geen flessen gevolgd!</p>'
+	<p style="margin-top: 30px;">Er worden op dit moment geen flessen gevolgd!</p>
 {{/trackers}}

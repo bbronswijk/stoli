@@ -1,23 +1,3 @@
-/* INDEX TROPHIES
- * 1 		1 fles toegevoegd
- * 2		3 flessen toegevoegd
- * 3		5 flessen toegevoegd
- * 4		10 flessen toegevoegd
- * 5		15 flessen toegevoegd
- * 6		20 flessen toegevoegd
- * 7		30 flessen toegevoegd
- * 8		aanwezig bij meer dan 50% van de borrels
- * 9		fles in je eentje leeggedronken
- * 10		fles in je eentje binnen één dag leeggedronken
- * 11		meeste flessen
- * 12		Strippenkaart: met alle spelers in ieder geval 1 keer geborreld
- * 13		XP : fles gekocht
- * 14		XP : aanwezig bij borrel
- * 15		fles voor 12 u leeggedronken
- * 16		Toten aanwezig bij een borrel
- * 17		trophy: aanwezig bij de meeste borrels
- *
- */
 
 var trophies = (function() {
 
@@ -117,8 +97,8 @@ var trophies = (function() {
 					id : 16,
 					type : 'badge',
 					img : 'toten',
-					description : "Toten is aanwezig bij de borrel",
-					xp : -500
+					description : "Toten is te aanwezig bij de borrel",
+					xp : 0
 				},{
 					id : 17,
 					type : 'trophy',
@@ -143,6 +123,42 @@ var trophies = (function() {
 					img : 'stoli-koning',
 					description : "Meeste liters Stoli gedronken",
 					xp : 100
+				},{
+					id : 21,
+					type : 'trophy',
+					img : 'hectoliter',
+					description : "50% korting op je aantal XP",
+					xp : 100
+				},{
+					id : 22,
+					type : 'trophy',
+					img : 'drinking-buddy',
+					description : "Met het grootste aantal personen geborreld",
+					xp : 100
+				},{
+					id : 23,
+					type : 'trophy',
+					img : 'social',
+					description : "Gemiddeld met de meeste mensen geborreld",
+					xp : 100
+				},{
+					id : 24,
+					type : 'badge',
+					img : 'donateur',
+					description : "Schenk de helft van je Stoli in bij je gasten",
+					xp : 100
+				},{
+					id : 25,
+					type : 'badge',
+					img : 'no-img',
+					description : "Met 75 mensen geborreld",
+					xp : 100
+				},{
+					id : 26,
+					type : 'badge',
+					img : '5-liter',
+					description : "Meer dan 5 liter Stoli gedronken",
+					xp : 100
 				}];
 	
 	
@@ -155,8 +171,10 @@ var trophies = (function() {
 	// bind events
 	$(document).on('click', '.exit_popup', _closeModal);
 	$(document).on('click', 'button.close-modal', _closeModal);
-	events.on('bottleAdded', getTrophies);
 	events.on('badgesAdded',setTrophiesBottle);
+	
+	// TODO bottleAdded gets called before the user objects is recalculated
+	events.on('bottleAdded', getTrophies);
 	
 	// HANDLING MODAL
 	function _openModal() {
@@ -201,6 +219,8 @@ var trophies = (function() {
 		$.when(
 			_getCompleted()
 		).then(
+			_updateStats()
+		).then(
 			_checkNewTrophies
 		).then(
 			_saveBadges
@@ -238,11 +258,19 @@ var trophies = (function() {
 		}, 'json');
 	}
 	
-	// 3. Check if the user has completed the requirements for new badges
+	
+	function _updateStats(){
+		// update stats
+		//console.log(JSON.stringify(user.complete));
+	}
+	
+	// 4. Check if the user has completed the requirements for new badges
 	// 		ADD here the conditions for the new badges
 	// 		check if the user has earned new trophies and save the ID to the array stagedTrophies
 	function _checkNewTrophies(){	
+				
 		// elements necessary for statistics
+		// TODO replace with global objects
 		var $bottles = $('#bottles');
 		var $total = $bottles.find('.bottle');
 		var $own = $bottles.find('.bottle.owner');
@@ -266,6 +294,7 @@ var trophies = (function() {
 		
 		// remove online user
 		var user_index = attendance_users.indexOf(user.id);
+		var gebruiker_index = user_index;
 		attendance_users.splice(user_index, 1);
 				
 		// variables for trophy 17 most attendees onwijs-populair
@@ -275,12 +304,13 @@ var trophies = (function() {
 		// variables for streak trophy 
 		var streak = [];
 		var max_streak = 0;
-				
+		
+		console.log( 'saldo1:'+user.complete[user_index].saldo );
 		// loop trough all bottles	
 		$.each(bottles, function(i){
-			
+						
 			// 20. meeste liters stoli
-			if ($.inArray('20', completed) == -1) {
+			//if ($.inArray('20', completed) == -1) {
 				// bereken saldo per persoon per fles
 				var size = bottles[i]['size'];
 				
@@ -291,15 +321,22 @@ var trophies = (function() {
 					var number_attendees = 1;
 				}
 				
+				// DIT WORDT AL GEDAAN IN DE USER
 				// calc saldo
+				/*
 				var saldo = size/number_attendees;	
+				
+				$.each(user.users,function(c){
+					// add the size of the bottle to the bottle owner
+					if( user.users[c].id == bottles[i].owner_id )
+						user.users[c].bought += size;	
+				});
 				
 				// voeg het saldo toe aan de owner 				
 				$.each(user.users,function(c){
-					if( user.users[c].id == bottle.user_id){
-						//console.log('owner_id:'+owner_id+' krijgt :'+saldo+' user index'+c);
-						user.users[c].saldo = saldo;
-						//console.log('index: '+c+' saldo:'+user.users[c].saldo );
+					// find the online user in the users array					
+					if( user.users[c].id == bottles[i]['owner_id']){
+						user.users[c].saldo += saldo;			
 						return false;
 					}
 				});
@@ -312,14 +349,16 @@ var trophies = (function() {
 						
 						$.each(user.users,function(c){
 							if( user.users[c].id == att_id){
-								user.users[c].saldo += saldo;
+								user.users[c].saldo += saldo;								
+						
 								return false;
 							}
 						});
 					});
 				}
-			}					
-			
+			//}	
+			*/
+							
 			// check if which bottle has max attendees 
 			if ($.inArray('17', completed) == -1) {
 				if( typeof bottles[i]['attendees_ids'] != 'undefined' ){
@@ -581,11 +620,110 @@ var trophies = (function() {
 					max_saldo_id = cur_saldo_id;
 				}
 				
-				console.log('user:'+cur_saldo_id+' > saldo:'+cur_saldo);
+				//console.log('user:'+cur_saldo_id+' > saldo:'+cur_saldo);
 			});
 			
-			if( max_saldo_id = bottle.user_id )
+			if( max_saldo_id == bottle.user_id )
 		    	stagedTrophies.push(20);
+		}
+		
+		// Als je te ver voorloopt wordt je xp gehalveerd
+		// zou elke keer moeten worden gecontroleerd 
+		if ($.inArray('21', completed) == -1) {
+			var max_xp = 0;
+			var max_xp_id = null;
+			
+			var xp = [];
+			
+			// loop trough all users for their xp		
+			$.each(user.users,function(i){
+				var cur_xp = user.users[i].xp;
+				var cur_xp_id = user.users[i].id;
+				
+				xp.push(cur_xp);
+				
+				if( max_xp < cur_xp ){					
+					max_xp = parseInt(cur_xp);
+					max_xp_id = cur_xp_id;
+				}
+				
+				//console.log('user:'+cur_saldo_id+' > saldo:'+cur_saldo);
+			});
+			
+			xp.sort( function(a, b){return b-a;} );
+			
+			//console.log('xp array:'+xp);
+			
+			if( max_xp_id == bottle.user_id ){
+				console.log('user has most xp');
+				if(xp[1] < ( parseInt(xp[0])/2 ) ){
+					console.log('win trophy 21');
+		    		stagedTrophies.push(21);
+		    	}
+		   }
+		}
+		
+		// Drinking buddy -> met het grootste aantal personen geborreld
+		if ($.inArray('22', completed) == -1) {
+			var met_data = compareValue(user.complete,'people_met');
+			//console.log(met_data);			
+			var user_index = met_data[2];
+			
+			var most_met_userid = user.complete[user_index].id;
+ 			if( most_met_userid == user.id ){
+ 				stagedTrophies.push(22);
+ 			}
+			
+		}
+		
+		
+		// 23 Sociale drinker
+		if($.inArray('23', completed) == -1) {
+			var social_data = compareValue(user.complete,'social');
+				
+			var user_index = social_data[2];
+			
+			var most_social_userid = user.complete[user_index].id;
+			
+ 			if( most_social_userid == user.id ){
+ 				stagedTrophies.push(23);
+ 			}
+		}
+		
+				
+		// 24 Donateur, helft van de gekochte stoli weg gegeven 
+		if($.inArray('24', completed) == -1) {
+			var user_index = gebruiker_index;
+			
+			var user_bought = user.complete[user_index].bought;
+			var user_drunk = user.complete[user_index].saldo;
+			
+			var ratio = user_bought/user_drunk;
+			
+			if( ratio > 2 ){
+ 				stagedTrophies.push(24);
+ 			}
+		}
+		
+		// 25. met 75 mensen geborreld
+		if($.inArray('25', completed) == -1) {
+			var user_index = gebruiker_index;
+			
+			var user_met = user.complete[user_index].people_met;
+			
+			if( user_met > 75 )
+				stagedTrophies.push(25);
+		}
+		
+		// 26. Meer dan 5 Liter Stoli gedronken
+		if($.inArray('26', completed) == -1) {
+			var user_index = gebruiker_index;
+			console.log( user.complete[user_index] );
+			
+			var user_saldo = user.complete[user_index].saldo;
+			
+			if( user_saldo > 5 )
+				stagedTrophies.push(26);
 		}
 		
 		return;
@@ -639,6 +777,10 @@ var trophies = (function() {
 							
 								badges.push(badge);
 								notifications.create(user.id, 'heeft de '+badge_type+' <b>' + badge_img + '</b> verdiend - ' + badge_xp + ' XP');
+								
+								
+							
+							
 							}
 						} else {
 							showAlert('error', 'Het toevoegen van de badges geeft een error: ' + response);
@@ -692,12 +834,28 @@ var trophies = (function() {
 	// 6. create a carousel with new badges
 	function _render() {
 		
-		var amount = (badges.length > 1 && badges.length != 0) ? 'badges' : 'badge';
+		var amount = (badges.length > 1 && badges.length != 0) ? 'trophies' : 'trophy';
 
 		var data = {
 			amount : amount,
 			badges : badges
 		};
+		
+		var text_badges = '';
+		
+		$.each(badges,function(i){
+			text_badges += badges[i].img;
+			b = i + 1;
+			
+			if( b < badges.length )
+				text_badges += ', ';
+		});
+		
+		var subject = user.last_name + ' heeft een trophy behaald op wiebetaaltdeStoli';
+		var title = 'Er is een fles toegevoegd aan wiebetaaltdeStoli.com!';
+		var text = '<p>'+user.last_name +' heeft zojuist een fles Stoli toegevoegd op wiebetaaltdestoli.com en daarmee de volgende '+amount+' verdiend!</p><p><strong>'+text_badges+'</strong></p>';
+										
+		notifications.send(subject, title, text);
 
 		_openModal();
 

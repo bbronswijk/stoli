@@ -25,7 +25,23 @@ Class quoteHelper{
 			"I don't abuse alcohol, I teach it a fucking lesson",
 			"The best thing about having a penis, is sharing it with people who don't",
 			"It's stupid when girls say they can't find a nice guy. Yet they ignore me! It's like saying you're hungry when there's a hot dog on the ground outside!",
-			"Just went over my bank account, and figured out I can live comfortably without working for the rest of my life. As long as I die on thursday."	
+			"Just went over my bank account, and figured out I can live comfortably without working for the rest of my life. As long as I die on thursday.",
+			"Ik wil je problemen wel voor je wegdrinken",
+			"Having gay parents must be though, I mean you either get twice the usual mount of dad jokes or get stuck into an infinite loop of 'go ask your mom'",
+			"When I offer to wash your back, all you have to say is yes or no. Not all this 'who are you, and how did you get in here?' nonsense",
+			"Drink coffee, do stupid things faster with more energy",
+			"I'm not sayin it is hot, but two hobbits just threw a ring in my backyard",
+			"In my defense I was unsupervised",
+			"Well.. That didn't work..",
+			"Ever since I started playing online games, I lost all respect for my mom.. Apparently she had sex with countless 8 years olds",
+			"Never tell a goat about your travel plans. Goats have no idea what to do with that information!",
+			"Left handed people have a higher chance of finishing their exam on time than people with no hands",
+			"A meal without wine, is called breakfast",
+			"Should I drink today, or drink today & tomorrow?",
+			"Hey, I'm really bad at portioning uncooked spaghetti, so if you and 110 of your friends wanna come over? Dinner is ready..",
+			"Friends, are like snowflakes. If you pee on them, they disappear",
+			"The path of inner peace begins with four words: 'not my fucking problem'"
+			
 		);	
 	
 		$select = rand(0,count($quotes) - 1 );

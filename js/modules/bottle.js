@@ -1,6 +1,6 @@
 // BOTTLE OBJECT
 var bottle = (function() {
-
+		
 	function saveBottle() {
 		loader.update('saving bottle..');
 		var action = link.base + '/bottles/insertBottle/';

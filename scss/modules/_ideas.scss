@@ -23,6 +23,12 @@
         display: inline-block;
       }
     }
+    .completed{
+      opacity: 0.6;
+      .description{
+      	text-decoration: line-through;
+      }
+    }
     
     .idea:last-of-type{
       border-bottom: 1px solid #D0D0D0;

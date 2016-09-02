@@ -3,12 +3,17 @@
   margin-bottom: 1%;
   position: relative;
   overflow:hidden;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
-  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);  
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);  
   height: 265px;
+  padding: 0 10px;
   @media screen and (max-width: 1100px) { 
     margin-bottom: 3%;
+  }
+  
+  #myChart{
+  	
   }
   
   .chart{
@@ -19,9 +24,10 @@
     font-family: $text-bold-font;
     font-weight: bold;
     font-size: 14px;
-    padding: 8px 16px;
+    padding: 8px 16px 6px 10px;
     margin-bottom: 12px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
+    margin: 0 -10px;
   } 
   
   table{
@@ -35,6 +41,10 @@
       text-align: left;
       width: 110px;
       text-transform: capitalize;
+      font-size: 12px;
+    }
+    td{
+      font-size: 12px;
     }
   }
   
@@ -54,7 +64,7 @@
 .welcome{
   @extend .graph;
   h2{
-    padding: 15px 30px 0 30px;
+    padding: 5px 30px 5px 0px;
     margin: 0;
     font-family: $text-main-font;
     font-size: 24px;
@@ -68,6 +78,38 @@
     margin-bottom: 10px;
   }
   
+}
+
+#profiteur-container{
+	text-align: center;
+	.profiteur{
+	  border-radius:50%;
+	  height:100px;
+	  width: 100px;
+	  overflow: hidden;
+	  margin-left: auto;
+	  margin-right: auto;
+	  
+	  img{
+	    height: 100%;
+	    width: auto;
+	  }
+	}
+	h3{
+	  font-family: $text-bold-font;
+	  margin: 0 20px 5px 20px;
+	  font-size: 16px;
+	}
+	i{
+	  color: $text-color-light;
+	}
+	span{
+	  display:block;
+	  margin: 0 20px;
+	  strong{
+	    font-family: $text-bold-font;
+	  }
+	}
 }
 
 
@@ -100,6 +142,14 @@
 
 .col-32{
   width: 66%;
+  @media screen and (max-width: 1100px) { 
+    width: 99%;  
+  }
+}
+
+.col-22{
+  width: 49%;
+  height: auto;
   @media screen and (max-width: 1100px) { 
     width: 99%;  
   }

@@ -34,6 +34,9 @@
 					echo '</div>';
 					echo '<strong>'.$value['last_name'].' </strong>';
 					echo $value['message'];
+					//$date = explode("-", $value['date']);
+					//echo '<div class="date">'.$date[2].'-'.$date[1].'-'.$date[0].'</div>';
+					echo '<div class="date">'.$value['date'].'</div>';
 				echo '</li>';
 			}	?>
 		</ul>

@@ -18,6 +18,7 @@ class Notificaties_Model extends Model {
 							notifications.id,
 							notifications.user_id,
 							notifications.message,
+							notifications.date,
 							users.last_name,
 							users.picture
 						FROM 

@@ -2,8 +2,27 @@
 
 var notifications = (function() {
 	
+	// elements
 	$notification = $('.notifications');
+	$send = $('#send-mail');
 	
+	// bind events
+	
+	function sendMail(subject, title, text){
+				
+		var data = {
+				subject : subject,
+				title : title,
+				text : text
+		}
+				
+		var action = link.base + '/notifications/sendNotification/';
+		
+		$.post(action, data, function(response) {			
+			console.log(response);						
+		});
+	}
+		
 	function update(){
 		var last_notification  = $notification.find('li:first').attr('id').replace('notification_','');
 
@@ -42,6 +61,11 @@ var notifications = (function() {
 			var name = user[0].last_name;
 			var picture = user[0].picture; 
 			var note_id = user.last_id;
+			
+			var d = new Date();
+			var month = parseInt( d.getMonth() + 1 );
+			var date = d.getDate()+'-'+ month +'-'+ d.getFullYear();
+			 
 			//alert(JSON.stringify(user));	
 			if(JSON.stringify(user)){	
 				// check if notification is empty 
@@ -56,8 +80,8 @@ var notifications = (function() {
 					$count += 1;
 					$notification.find('.counter').text($count);
 				}
-				$notification.find('ul').prepend('<li id="notification_'+note_id+'"><div class="profile-img"><img src="'+picture+'" alt="profile"/></div><strong>'+name+'</strong> '+message+'</li>');
-
+				$notification.find('ul').prepend('<li id="notification_'+note_id+'"><div class="profile-img"><img src="'+picture+'" alt="profile"/></div><strong>'+name+'</strong> '+message+'<div class="date">'+date+'</div></li>');
+				
 			}
 			loader.hide();							
 		},'json');
@@ -65,7 +89,8 @@ var notifications = (function() {
 	
 	return {
 		update : update,
-		create : create
+		create : create,
+		send : sendMail
 	};
 })();
 

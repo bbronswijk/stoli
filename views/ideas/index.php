@@ -7,7 +7,7 @@
 	
 	<ul class="list-ideas">
 		<?php foreach ($this->ideas as $key => $value) { ?>
-			<li class="idea">
+			<li class="idea <?php if($value['completed'] == 1) echo 'completed'; ?>">
 				<div class="user"><?php echo $value['last_name']; ?></div>
 				<div class="description"><?php echo $value['description']; ?></div>
 			</li>

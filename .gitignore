@@ -1,4 +1,10 @@
+config/config.php
+js/modules/header.js
 node_modules/
 .project
+.metadata/
+.sass-cache/
 Gruntfile.js
+RemoteSystemTempFiles/
 package.json
+flightplan.js

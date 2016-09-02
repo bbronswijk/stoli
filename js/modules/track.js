@@ -22,6 +22,13 @@ var track = (function(){
 			if( Math.floor(response) == response && $.isNumeric(response) ){
 				getTrackers(); 		
 			    showAlert('succes','De nieuwe fles stoli is succesvol toegevoegd!');
+			    
+			    var subject = user.last_name + ' heeft een fles toegevoegd aan de track & track op wiebetaaltdeStoli';
+				var title = 'Er is een fles toegevoegd aan de track & trace!';
+				var text = '<p>'+user.last_name  + ' heeft zojuist een fles Stoli toegevoegd aan de track&trace op wiebetaaltdestoli.com.</p><p>Bekijk de status van de fles op de website. Die fles moet op!</p>';
+																
+				notifications.send(subject, title, text);
+			    
 			   	notifications.create(track.user_id,'heeft een fles gekocht, die is toegevoegd aan de track & trace');	
 			   	loader.hide();
 			} else{

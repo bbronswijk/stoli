@@ -5,6 +5,11 @@
           border-top: 1px solid #ddd;
           padding: 15px 30px 15px 20px;
           overflow: auto;
+          
+          .date{
+          	color: $text-color-light;
+          	font-size: inherit;
+          }
         }
         
         li .profile-img{

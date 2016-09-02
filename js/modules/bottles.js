@@ -3,6 +3,9 @@
  */
 
 var Bottles = (function() {
+	
+	// define variables
+	var bottles = null;
 		
 	// bind events
 	events.on('bottleSaved',getBottles);
@@ -13,7 +16,7 @@ var Bottles = (function() {
 	// load ajax bottles 
 	function getBottles(){
 		
-		if( !$('body').hasClass('bottles-page') ) return false;
+		if( !$('body').hasClass('bottles-page') && !$('body').hasClass('dashboard-page') ) return false;
 
 		
 		$.get('bottles/getAttendees', function(attendees){
@@ -91,6 +94,8 @@ var Bottles = (function() {
 					}
 					
 					//console.log(bottles);
+					
+					Bottles.bottles = bottles;
 					
 					render(bottles);
 		

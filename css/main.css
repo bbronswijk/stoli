@@ -364,6 +364,7 @@ body {
         .top_bar .online-user-container .user-name a:hover {
           text-decoration: underline; }
     .top_bar .online-user-container .user-level {
+      text-transform: capitalize;
       font-size: 0.8em;
       padding-bottom: 22px;
       display: block;
@@ -491,9 +492,9 @@ body {
     margin-right: 3%;
     margin-bottom: 3%;
     background: #fff;
-    -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25); }
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25); }
 
 /* WARNING BOX */
 .content .warning {
@@ -778,10 +779,11 @@ body {
   margin-bottom: 1%;
   position: relative;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-  height: 265px; }
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+  height: 265px;
+  padding: 0 10px; }
   @media screen and (max-width: 1100px) {
     .graph, .welcome {
       margin-bottom: 3%; } }
@@ -791,9 +793,10 @@ body {
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 14px;
-    padding: 8px 16px;
+    padding: 8px 16px 6px 10px;
     margin-bottom: 12px;
-    border-bottom: 1px solid #eee; }
+    border-bottom: 1px solid #ddd;
+    margin: 0 -10px; }
   .graph table, .welcome table {
     margin: 3% 9%; }
     .graph table tr, .welcome table tr {
@@ -803,7 +806,10 @@ body {
       font-family: "Montserrat", sans-serif;
       text-align: left;
       width: 110px;
-      text-transform: capitalize; }
+      text-transform: capitalize;
+      font-size: 12px; }
+    .graph table td, .welcome table td {
+      font-size: 12px; }
   .graph .statics-background, .welcome .statics-background {
     background: url("../img/bottle.svg") no-repeat;
     opacity: 0.08;
@@ -815,7 +821,7 @@ body {
     background-size: contain; }
 
 .welcome h2 {
-  padding: 15px 30px 0 30px;
+  padding: 5px 30px 5px 0px;
   margin: 0;
   font-family: "Open Sans", sans-serif;
   font-size: 24px;
@@ -826,6 +832,30 @@ body {
   line-height: 24px;
   color: #c3c3c3;
   margin-bottom: 10px; }
+
+#profiteur-container {
+  text-align: center; }
+  #profiteur-container .profiteur {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto; }
+    #profiteur-container .profiteur img {
+      height: 100%;
+      width: auto; }
+  #profiteur-container h3 {
+    font-family: "Montserrat", sans-serif;
+    margin: 0 20px 5px 20px;
+    font-size: 16px; }
+  #profiteur-container i {
+    color: #c3c3c3; }
+  #profiteur-container span {
+    display: block;
+    margin: 0 20px; }
+    #profiteur-container span strong {
+      font-family: "Montserrat", sans-serif; }
 
 .col {
   box-sizing: border-box;
@@ -852,6 +882,13 @@ body {
     .col-32 {
       width: 99%; } }
 
+.col-22 {
+  width: 49%;
+  height: auto; }
+  @media screen and (max-width: 1100px) {
+    .col-22 {
+      width: 99%; } }
+
 #ideas .idea-input {
   padding: 7px 12px;
   margin-top: 10px;
@@ -871,6 +908,10 @@ body {
     #ideas .list-ideas .idea .description {
       width: 70%;
       display: inline-block; }
+  #ideas .list-ideas .completed {
+    opacity: 0.6; }
+    #ideas .list-ideas .completed .description {
+      text-decoration: line-through; }
   #ideas .list-ideas .idea:last-of-type {
     border-bottom: 1px solid #D0D0D0; }
 
@@ -950,6 +991,9 @@ body {
   border-top: 1px solid #ddd;
   padding: 15px 30px 15px 20px;
   overflow: auto; }
+  .list-notificaties li .date {
+    color: #c3c3c3;
+    font-size: inherit; }
 .list-notificaties li .profile-img {
   float: left;
   margin-right: 20px;
@@ -1040,7 +1084,8 @@ body {
     padding: 12px; }
   .top_bar .notifications-container ul li {
     list-style: none;
-    font-size: 12px;
+    font-size: 11px;
+    line-height: 11px;
     background: #f1f4f7;
     box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.15);
     padding: 15px 30px 15px 20px; }
@@ -1049,7 +1094,7 @@ body {
     margin-right: 20px;
     height: 45px;
     width: 45px;
-    margin-top: -4px;
+    margin-top: -0px;
     border-radius: 50%;
     overflow: hidden;
     -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
@@ -1059,7 +1104,12 @@ body {
       height: 100%;
       width: auto; }
   .top_bar .notifications-container ul li strong {
+    font-size: inherit;
     font-family: "Montserrat", sans-serif; }
+  .top_bar .notifications-container ul li .date {
+    font-size: inherit;
+    margin-top: 3px;
+    color: #c3c3c3; }
   .top_bar .notifications-container a {
     text-align: center;
     display: block;

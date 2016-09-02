@@ -15,7 +15,7 @@ class login extends Controller {
 			// if a user is logged in skip the login screen and proceed to the dashnoard
 			header('location: '.URL.'dashboard');	
 		} else {
-			// no user is logged in > get the facebook object
+			// user is not logged in > get the facebook object
 			$fb = new Facebook\Facebook([
 				'app_id' => FBAPPID, 
 				'app_secret' => FBSECRET,
@@ -24,8 +24,10 @@ class login extends Controller {
 				
 			$helper = $fb->getRedirectLoginHelper();
 			
+			
 			// send the loginUrl to the view 
-			$this -> view -> loginUrl = $helper->getLoginUrl(URL.'login/auth') ;
+			$permissions = ['email']; // Optional permissions			
+			$this -> view -> loginUrl = $helper->getLoginUrl(URL.'login/auth', $permissions) ;
 	
 			$this -> view -> render('login/index',true);
 		}

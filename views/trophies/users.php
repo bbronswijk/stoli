@@ -19,7 +19,7 @@
 			echo '<div class="profile-picture">';	
 					echo '<img src="'.URL.'img/achievements/1-fles.svg" alt="badge"/>';	
 				if($sock = @fsockopen('www.google.com', 80)){
-					echo '<img src="'.$value['picture'].'" alt="profile"/>';
+					echo '<img src="http://graph.facebook.com/'.$value['id'].'/picture?type=large" alt="profile"/>';
 				} else{
 					echo '<img src="'.URL.'img/profile.png" alt="profile"/>';
 				}

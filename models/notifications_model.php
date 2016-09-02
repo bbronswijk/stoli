@@ -18,6 +18,7 @@ class Notifications_Model extends Model {
 							notifications.id,
 							notifications.user_id,
 							notifications.message,
+							notifications.date,
 							users.last_name,
 							users.picture
 						FROM 
@@ -138,14 +139,17 @@ class Notifications_Model extends Model {
 		
 		$user = $_POST['user_id'];
 		$message = $_POST['notification'];
+		$date = date('d-m-Y');
+		
 		
 		// create new notification
 		$query = $this->db->prepare("INSERT INTO notifications
-											(user_id, message)
-											VALUES (:user_id, :message)
+											(user_id, message, date)
+											VALUES (:user_id, :message, :date)
 										")or die('Error: notifications_Model createNotification');
 		$query->bindParam(':user_id', $user);
 		$query->bindParam(':message', $message);
+		$query->bindParam(':date', $date);
 		$query->execute();
 		
 		$last_id = $this->db->lastInsertId();
@@ -174,5 +178,68 @@ class Notifications_Model extends Model {
 		//$count = $query->execute();
 		//echo $count;
 	}
-
+	
+	public function _getUsersEmail(){
+		$query = $this->db->query("
+						SELECT
+							email
+						FROM
+							users
+						WHERE
+							email IS NOT NULL
+						") or die('Error: notifications_Model _getUsersEmail');
+		
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$stmt = $query->fetchAll();
+		
+		// IS NOT NULL
+		//= 'brambronswijk@gmail.com'
+		
+		return $stmt;
+	}
+	
+	function sendNotification(){
+				
+		$subject = $_POST['subject'];
+		$message = '<table align="center" bgcolor="#F2F2F2" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">'.
+					'<tbody><tr><td><h1 style="color: #df1a25;font-family: Helvetica, Arial, sans-serif; font-size: 30px; font-style: normal; font-weight: 600; line-height: 36px; letter-spacing: normal; margin: 0; padding: 40px 20px 0 20px; text-align: center">WiebetaaltdeStoli.com</h1></td></tr><tr><td align="center" style="padding:20px" valign="top">'.
+					'<table align="center" border="0" cellpadding="0" cellspacing="0" style="max-width: 640px" width="100%"><tbody><tr>'.
+					'<td align="center" valign="top"><table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0"style="background-color: #ffffff; border-bottom: 2px solid #e5e5e5; border-radius: 4px"width="100%">'.
+					'<tbody><tr><td align="center" style="padding: 20px" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td style="padding-bottom: 0px" valign="top">'.
+					'<h1 style="color: #606060; font-family: Helvetica, Arial, sans-serif; font-size: 28px; font-style: normal; font-weight: 600; line-height: 36px; letter-spacing: normal; margin: 0; padding: 0; text-align: left">'.
+					$_POST['title'].
+					'</h1></td></tr><tr><td style="padding-bottom: 40px" valign="top"><p style="color: #606060; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 0; margin-top: 0; text-align: left">'.
+					$_POST['text'].
+					'<a href="http://wiebetaaltdestoli.com" style="color:#ffffff;text-decoration:none;font-size:14px;font-weight:bold;display:block;padding:7px;margin-top:15px;margin-bottom:15px;background:#df1a25;border-radius:5px;width:100px;text-align:center;" target="_blank">Naar website</a>'.
+					'</p></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td align="center" valign="top">'.
+					'<table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td align="center" valign="top" style="font-family: Helvetica; font-size: 12px; line-height: 24px; padding-top: 10px; padding-bottom: 40px; text-align: center">'.
+					'<a href="http://wiebetaaltdestoli.com" style="color:#6f6f6f;text-decoration:none;" target="_blank">wiebetaaltdestoli.com</a>'.					
+					'</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>';
+			
+		/* Start of headers */
+		$headers = "From: WiebetaaltdeStoli.com <info@wiebetaaltdestoli.com>\n".
+				"Reply-To: info@wiebetaaltdestoli.nl";
+		$headers .= "MIME-Version: 1.0\r\n";
+		/// TODO BRAM content type
+		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		
+		$emails = $this->_getUsersEmail();
+				
+		foreach( $emails as $key => $value){
+			$to = $emails[$key]['email'];
+		
+			$flgchk = mail ("$to", "$subject", "$message", "$headers");
+		}
+		
+		
+			
+		if($flgchk){
+			// verstuurd
+			echo json_encode('mails verstuurd');
+		}
+		else{
+			// error
+			echo json_encode($flgchk);
+		}
+	}
 }

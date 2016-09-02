@@ -21,5 +21,9 @@ class notifications extends Controller {
 	function createNotification(){
 		$this->model->createNotification();
 	}
+	
+	function sendNotification(){
+		$this->model->sendNotification();
+	}
 
 }
