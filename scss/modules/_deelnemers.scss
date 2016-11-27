@@ -1,6 +1,5 @@
 /* DEELNEMERS */
 .user{ 
-  
   .profile-picture{
       width: 120px;
       height: 120px;
@@ -9,11 +8,8 @@
       text-align: center;
       margin-left: auto;
       margin-right: auto;
-      
-      img{
-        height: 100%;
-        width: auto;
-      }
+      background-size: cover;
+      background-position: center;
     }
     .bottle-trophies{
       display: inline-block;
@@ -89,6 +85,9 @@
         width: auto;
         top: 0;
         left: 0;
+      }
+       img {
+      	opacity:0;
       }
     }
     .stats{

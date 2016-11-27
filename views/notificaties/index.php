@@ -4,15 +4,17 @@
 	<ul class="list-notificaties">
 		<?php
 		foreach ($this->notificaties as $key => $value) {
+			
+			if($sock = @fsockopen('www.google.com', 80)){
+				$userImg = $value['picture'];
+			} else{
+				$userImg = URL.'img/profile.png';
+			}
+			
 			echo '<li id="notification_' . $value['id'] . '">';
-				echo '<div class="profile-img">';
+				echo '<div class="profile-img" style="background-image:url('.$userImg.');">';
 		
-					// check if connected to internet
-					if (!$sock = @fsockopen('www.google.com', 80)) {
-						echo '<img src="' . URL . 'img/profile.png" alt="profile"/>';		
-					} else {
-						echo '<img src="' . $value['picture'] . '" alt="profile"/>';
-					}
+					
 		
 				echo '</div>';
 				echo '<strong>' . $value['last_name'] . ' </strong>';

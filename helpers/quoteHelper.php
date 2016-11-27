@@ -40,7 +40,10 @@ Class quoteHelper{
 			"Should I drink today, or drink today & tomorrow?",
 			"Hey, I'm really bad at portioning uncooked spaghetti, so if you and 110 of your friends wanna come over? Dinner is ready..",
 			"Friends, are like snowflakes. If you pee on them, they disappear",
-			"The path of inner peace begins with four words: 'not my fucking problem'"
+			"The path of inner peace begins with four words: 'not my fucking problem'",
+			"I thought my vasectomy would keep my wife from getting pregnant but apparently it just changes the color of the baby",
+			"Give a man a plane tickets and he'll fly for a day. Push a man out of a plane, and he'll fly for the rest of his life",
+			"Sometimes I just want someone to hug me and say: I know it's hard. you're going to be okay. Here's a coffee. And 5 million dollars"
 			
 		);	
 	

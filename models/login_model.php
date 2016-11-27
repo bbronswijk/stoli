@@ -98,15 +98,24 @@ class Login_Model extends Model {
 		if( $count == 0 ){
 			$datum = date('Y/m/d h:i:s', time());
 			
+			if(!empty($profile['email'])){
+				$email = $profile['email'];
+			} else{
+				$email = 'no-reply@wiebetaaltdestoli.com';
+			}
+			
 			// put new user in DB here				
 			$add = $this->db->prepare("INSERT INTO users
 				(id, first_name, last_name, email, picture, created, modified )
 				VALUES (:id, :first_name, :last_name, :email, :picture, :created, :modified)
 				");
+			
+			
+			
 			$add->bindParam(':id', $profile['id']);
 			$add->bindParam(':first_name', $profile['first_name']);
 			$add->bindParam(':last_name', $profile['last_name']);
-			$add->bindParam(':email', $profile['email']);
+			$add->bindParam(':email', $email);
 			$add->bindParam(':picture', $profile['picture']['url']);
 			$add->bindParam(':created', $datum);
 			$add->bindParam(':modified', $datum);
@@ -118,14 +127,15 @@ class Login_Model extends Model {
 				// create notification --> should have its own model?
 				$user = $profile['id'];
 				$message = 'heeft een nieuw account aangemaakt';
-				
+				$datumNote = date('d-m-Y h:i:s', time());
 				// create new notification
 				$query = $this->db->prepare("INSERT INTO notifications
-													(user_id, message)
-													VALUES (:user_id, :message)
+													(user_id, message, date)
+													VALUES (:user_id, :message, :date)
 												")or die('Error: notifications_Model createNotification');
 				$query->bindParam(':user_id', $user);
 				$query->bindParam(':message', $message);
+				$query->bindParam(':date', $datumNote);
 				$query->execute();				
 			}
 		} else if( $count == 1 ){

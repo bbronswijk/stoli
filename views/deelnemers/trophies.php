@@ -25,6 +25,13 @@
 		
 		$userLevel = $levels[0];
 
+		if($sock = @fsockopen('www.google.com', 80)){
+			$userImg = 'http://graph.facebook.com/'.$value['id'].'/picture?type=large';
+		} else{
+			$userImg = URL.'img/profile.png';
+		}
+		
+		
 		foreach( $levels as $xp => $level ){
 			if( $userXP >= $xp ){
 				$userLevel = $level;
@@ -32,13 +39,13 @@
 		}
 		
 		echo '<li class="item user" id="user_' . $value['id'] . '">';	
-			echo '<div class="profile-picture">';	
-					echo '<img src="'.URL.'img/achievements/1-fles.svg" alt="badge"/>';	
+			echo '<div class="profile-picture" style="background-image:url('.$userImg.');">';	
+					echo '<img src="'.URL.'img/achievements/1-fles.svg" alt="badge" style="opacity:0;"/>';	
 				if($sock = @fsockopen('www.google.com', 80)){
 					
-					echo '<img src="http://graph.facebook.com/'.$value['id'].'/picture?type=large" alt="profile"/>';
+					echo '<img src="http://graph.facebook.com/'.$value['id'].'/picture?type=large" alt="profile" style="opacity:0;"/>';
 				} else{
-					echo '<img src="'.URL.'img/profile.png" alt="profile"/>';
+					echo '<img src="'.URL.'img/profile.png" alt="profile" style="opacity:0;"/>';
 				}
 			echo '</div>';
 			echo '<div class="bottles"> ';
