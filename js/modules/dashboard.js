@@ -118,23 +118,42 @@ var dashboard = (function() {
 		if( !$('body').hasClass('dashboard-page')  && !$('body').hasClass('index-page') ) return false;
 			
 		$.get('dashboard/getDates', function(response) {
-			//alert(JSON.stringify(response));
+			//console.log(response);
 			liters = 0;
 			var data = [];
 			var d = new Date(); // juni = 5 // jan = 0
 			
-			var months = ['Jan','' , 'Feb','' , 'Mrt','' , 'Apr','' , 'Mei','' , 'Jun','' ,'Jul','' ,'Aug','' ,'Sept','' ,'Okt','' ,'Nov','' ,'Dec',''];
-					
-			// create a array with the length of all arrays
-			for( i = 0; i < months.length; i++ ){
+			var months = ['Apr','Mei','Jun','Jul','Aug','Sept','Okt','Nov','Dec','Jan','Feb', 'Mrt','Apr','Mei','Jun','Jul','Aug','Sept','Okt','Nov','Dec','Jan','Feb', 'Mrt'];
+			
+			// function to calculate the amount of months from the start 
+			function countMonths(date){
+				  var a = new Date('2016-04-01 07:19:28'); // START WEBSITE:  datum van eerste fles 
+				  var b = new Date(date);
+
+				  var months = (b.getFullYear() - a.getFullYear()) * 12; // Months between years.
+				  months += b.getMonth() - a.getMonth(); // Months between... months.
+
+				  return (months); // add current month
+			}
+
+			var cur_date = new Date();
+			
+			var length_graph = countMonths(cur_date) + 1;
+			
+			// create a array with the length of all arrays to store number of bottles for each month
+			for( i = 0; i < length_graph; i++ ){
 				// datum = [0,0,0,0,0,0,0,0,0,0];
 				// response is list of the colum dates of all bottles
 				data.push(0);
 			}	
-			
-			
+						
 			// loop trough dates from database
 			$.each(response, function(i){
+
+				var pos_array = countMonths(response[i].date);
+				
+				data[pos_array] += 1;
+								
 				liters += parseInt(response[i].size) / 100;
 				
 				// full date				
@@ -143,32 +162,14 @@ var dashboard = (function() {
 				var year = datum.split("-")[0];
 				var month = datum.split("-")[1];
 				var day = datum.split("-")[2];
-				if(year == d.getFullYear() ){
-					
-					if(day < 15){
-						data[(month * 2) - 1] += 1;
-					} else{
-						data[(month * 2) ] += 1;
-					}
-				}
+				
 			});
 						
-			// slice the labels from the months array	
-			if( d.getDate() > 15)
-				var selection = ( ( d.getMonth() + 1 ) * 2 ) + 1; 
-			else
-				var selection = ( ( d.getMonth() + 1 ) * 2 ) ; // juni = 13 // jan = 3
-			
 			// website begonnen in april 
-			var labels = months.slice(6,selection);			
-			var series = data.slice(6,selection);
+			var labels = months.slice(0,data.length);		
+			var series = data;
 			
-			//var labels = months;
-			//var series = data;
-			
-			//console.log('labels:'+labels);
-			//console.log('series:'+series);
-			
+			// select graph element
 			var flowBottles = $(".aantal-borrels").get(0).getContext("2d");
 						
 			var data = {
@@ -180,6 +181,7 @@ var dashboard = (function() {
 					pointColor : "rgba(220,220,220,1)",
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
+					max : 12,
 					pointHighlightStroke : "rgba(220,220,220,1)",
 					data : series
 				}]
